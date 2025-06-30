@@ -22,9 +22,9 @@ const translations = {
     wedding: 'ብዓል',
     christening: 'ጥምቀት',
     birthday: 'ልደት',
-    graduation: 'መመረቅታ',
-    exam: 'ፈተና',
-    inspiration: 'መጽሓፍ ቅዱስ',
+    graduation: 'ስቱደንተን',
+    exam: 'መመረቅታ',
+    inspiration: 'ጥቅስታት',
   },
 };
 
