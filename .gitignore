@@ -4,8 +4,8 @@ server/node_modules/.bin/mkdirp
 client/public/vite.svg
 client/src/assets/react.svg
 *.json
-/client
 *.json
-/client
 client/package-lock.json
 client/package.json
+/client/public
+/client/src/assets

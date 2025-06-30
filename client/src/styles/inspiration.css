@@ -1,0 +1,114 @@
+/* Inspiration Page Specific Styles */
+.inspiration-images-grid,
+.birthday-images-grid,
+.christening-images-grid,
+.exam-images-grid,
+.graduation-images-grid,
+.wedding-images-grid {
+  max-width: 900px; /* eller den maxbredd du vill ha */
+  margin: 0 auto;
+}
+
+.inspiration-images-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  align-items: start;
+  width: 100%;
+}
+
+.inspiration-image-container {
+  text-align: center;
+  width: 100%;
+}
+
+.inspiration-image-card {
+  width: 100%;
+  background: #f7f7f7;
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+.inspiration-image-card:hover {
+  transform: scale(1.02);
+}
+
+.inspiration-image-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Specific poster sizes for inspiration - actual pixel dimensions */
+.inspiration-poster-10x15 { width: 20%; aspect-ratio: 10/15; height: auto; margin: 0 auto; display: block; }
+.inspiration-poster-15x20 { width: 30%; aspect-ratio: 15/20; height: auto; margin: 0 auto; display: block; }
+.inspiration-poster-20x10 { width: 40%; aspect-ratio: 20/10; height: auto; margin: 0 auto; display: block; }
+.inspiration-poster-20x30 { width: 40%; aspect-ratio: 20/30; height: auto; margin: 0 auto; display: block; }
+.inspiration-poster-25x35 { width: 50%; aspect-ratio: 25/35; height: auto; margin: 0 auto; display: block; }
+.inspiration-poster-30x15 { width: 60%; aspect-ratio: 30/15; height: auto; margin: 0 auto; display: block; }
+.inspiration-poster-30x40 { width: 60%; aspect-ratio: 30/40; height: auto; margin: 0 auto; display: block; }
+.inspiration-poster-40x60 { width: 80%; aspect-ratio: 40/60; height: auto; margin: 0 auto; display: block; }
+.inspiration-poster-50x50 { width: 100%; aspect-ratio: 1/1; height: auto; margin: 0 auto; display: block; }
+
+/* Specific poster sizes for inspiration - responsive dimensions */
+.inspiration-poster-60x80 {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 60/80;
+  margin: 0 auto;
+}
+
+.inspiration-poster-70x100 {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 70/100;
+  margin: 0 auto;
+}
+
+.inspiration-poster-80x120 {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 80/120;
+  margin: 0 auto;
+}
+
+.inspiration-poster-60x200 {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 60/200;
+  margin: 0 auto;
+}
+
+.inspiration-poster-50x150 {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 50/150;
+  margin: 0 auto;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .inspiration-images-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .inspiration-images-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.birthday-poster-50x70 { width: 71%; aspect-ratio: 50/70; }
+.birthday-poster-60x80 { width: 86%; aspect-ratio: 60/80; }
+.birthday-poster-70x100 { width: 100%; aspect-ratio: 70/100; }
+.birthday-poster-60x200 { width: 86%; aspect-ratio: 60/200; }
+.birthday-poster-50x150 { width: 71%; aspect-ratio: 50/150; }
+
+.height: auto;
+margin: 0 auto;
+display: block; 
