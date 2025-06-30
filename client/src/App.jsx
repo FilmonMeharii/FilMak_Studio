@@ -1,4 +1,3 @@
-import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage.jsx';
 import WeddingPosters from './pages/WeddingPosters.jsx';
@@ -10,7 +9,7 @@ import InspirationPosters from './pages/InspirationPosters.jsx';
 
 export default function App() {
   return (
-    <Router>
+    <Router basename="/FilMak_Studio">
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/wedding" element={<WeddingPosters />} />

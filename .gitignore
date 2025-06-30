@@ -9,3 +9,6 @@ client/package-lock.json
 client/package.json
 /client/public
 /client/src/assets
+/node_modules/@nodelib/fs.scandir/out
+/node_modules/@nodelib/fs.stat/out
+/node_modules
