@@ -11,10 +11,13 @@
 
 .inspiration-images-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(150px, auto));
   gap: 40px;
   align-items: start;
+  justify-items: center;
   width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .inspiration-image-container {
@@ -102,13 +105,3 @@
     grid-template-columns: 1fr;
   }
 }
-
-.birthday-poster-50x70 { width: 71%; aspect-ratio: 50/70; }
-.birthday-poster-60x80 { width: 86%; aspect-ratio: 60/80; }
-.birthday-poster-70x100 { width: 100%; aspect-ratio: 70/100; }
-.birthday-poster-60x200 { width: 86%; aspect-ratio: 60/200; }
-.birthday-poster-50x150 { width: 71%; aspect-ratio: 50/150; }
-
-.height: auto;
-margin: 0 auto;
-display: block; 
