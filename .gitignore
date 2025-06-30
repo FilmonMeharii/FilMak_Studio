@@ -1,0 +1,11 @@
+server/.env
+server/node_modules/.bin/mkdirp
+/server/node_modules
+client/public/vite.svg
+client/src/assets/react.svg
+*.json
+*.json
+client/package-lock.json
+client/package.json
+/client/public
+/client/src/assets
