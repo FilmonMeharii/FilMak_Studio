@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header.jsx';
+import { useSwipeGesture } from '../hooks/useSwipeGesture.js';
 import '../styles/exam.css';
 import florence from '../assets/florence.jpg';
 import florence2 from '../assets/florence2.jpg';
@@ -24,18 +25,18 @@ const translations = {
 };
 
 const examples = [
-  { src: florence2, title: 'Examposter 1', size: '60 x 200 cm' },
-  { src: img1, title: 'Examposter 2', size: '50 x 150 cm' },
+  { src: florence2, title: 'Examposter 1', size: '60 x 120 cm' },
+  { src: img1, title: 'Examposter 2', size: '50 x 100 cm' },
   { src: rose, title: 'Examposter 3', size: '70 x 100 cm' },
   { src: gozo, title: 'Examposter 4', size: '80 x 120 cm' },
   { src: florence, title: 'Examposter 5', size: '60 x 90 cm' },
-  { src: florence2, title: 'Examposter 6', size: '60 x 200 cm' },
+  { src: florence2, title: 'Examposter 6', size: '60 x 120 cm' },
 ];
 
 // Function to get CSS class based on size
 const getSizeClass = (size) => {
-  if (size === '60 x 200 cm') return 'exam-poster-60x200';
-  if (size === '50 x 150 cm') return 'exam-poster-50x150';
+  if (size === '60 x 120 cm') return 'exam-poster-60x120';
+  if (size === '50 x 100 cm') return 'exam-poster-50x100';
   if (size === '70 x 100 cm') return 'exam-poster-70x100';
   if (size === '80 x 120 cm') return 'exam-poster-80x120';
   if (size === '60 x 90 cm') return 'exam-poster-60x90';
@@ -47,6 +48,27 @@ export default function ExamPosters() {
   const t = translations[lang];
   const [imgModal, setImgModal] = useState(null);
   const modalRef = useRef(null);
+  const [loadedImages, setLoadedImages] = useState(new Set());
+
+  // Swipe gestures for mobile
+  const handleSwipeLeft = () => {
+    if (imgModal !== null) {
+      setImgModal((prev) => (prev + 1) % examples.length);
+    }
+  };
+
+  const handleSwipeRight = () => {
+    if (imgModal !== null) {
+      setImgModal((prev) => (prev - 1 + examples.length) % examples.length);
+    }
+  };
+
+  useSwipeGesture(handleSwipeLeft, handleSwipeRight);
+
+  // Handle image loading
+  const handleImageLoad = (index) => {
+    setLoadedImages(prev => new Set(prev).add(index));
+  };
 
   // Trap focus inside modal and handle keyboard navigation
   useEffect(() => {
@@ -111,10 +133,26 @@ export default function ExamPosters() {
                 tabIndex={0}
                 aria-label={`Enlarge example exam poster ${i+1}`}
               >
+                {!loadedImages.has(i) && (
+                  <div 
+                    className="image-loading" 
+                    style={{ 
+                      width: '100%', 
+                      height: '100%', 
+                      position: 'absolute',
+                      top: 0,
+                      left: 0,
+                      zIndex: 1
+                    }}
+                  />
+                )}
                 <img 
                   src={ex.src} 
                   alt={`Example exam poster ${i+1}`} 
                   loading="lazy"
+                  className={`image-fade-in ${loadedImages.has(i) ? 'loaded' : ''}`}
+                  onLoad={() => handleImageLoad(i)}
+                  style={{ position: 'relative', zIndex: 2 }}
                 />
               </div>
               <div style={{ 

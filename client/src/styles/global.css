@@ -598,4 +598,61 @@ button:focus, .nav-link:focus, .image-card:focus, .category-card:focus, .modal-c
   .hero-section h1 {
     font-size: 1.3em;
   }
+}
+
+/* Loading states and image placeholders */
+.image-loading {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+  border-radius: 8px;
+}
+
+@keyframes loading {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.image-fade-in {
+  opacity: 0;
+  transition: opacity 0.3s ease-in;
+}
+
+.image-fade-in.loaded {
+  opacity: 1;
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .scroll-to-top {
+    right: 16px;
+    bottom: 24px;
+    width: 44px;
+    height: 44px;
+    font-size: 24px;
+  }
+  
+  .modal-prev, .modal-next {
+    font-size: 1.5em !important;
+    padding: 0 12px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .scroll-to-top {
+    right: 12px;
+    bottom: 20px;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+  }
+}
+
+/* Touch-friendly modal buttons */
+.modal-prev, .modal-next {
+  min-width: 44px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 } 

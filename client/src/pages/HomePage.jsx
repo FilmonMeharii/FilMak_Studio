@@ -119,6 +119,21 @@ export default function HomePage() {
         <p style={{ fontSize: '1.2em', color: '#333', maxWidth: 600, margin: '0 auto' }}>
           Welcome! Browse my custom-designed posters for weddings, baptisms, graduations, and more. Get inspired and contact me to order your own personalized print.
         </p>
+        <div style={{ marginTop: 20 }}>
+          <Link to="/about" style={{ 
+            color: '#667eea', 
+            textDecoration: 'none', 
+            fontSize: '0.95em',
+            fontWeight: 500,
+            padding: '8px 16px',
+            borderRadius: 8,
+            border: '1px solid #667eea',
+            transition: 'all 0.2s',
+            display: 'inline-block'
+          }}>
+            Learn more about my work →
+          </Link>
+        </div>
       </section>
 
       {/* Categories Grid */}

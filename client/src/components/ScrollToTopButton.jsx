@@ -20,6 +20,7 @@ export default function ScrollToTopButton() {
       onClick={scrollToTop}
       aria-label="Scroll to top"
       tabIndex={visible ? 0 : -1}
+      className="scroll-to-top"
       style={{
         position: 'fixed',
         right: 24,

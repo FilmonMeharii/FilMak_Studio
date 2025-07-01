@@ -5,7 +5,7 @@
 .exam-images-grid,
 .graduation-images-grid,
 .wedding-images-grid {
-  max-width: 900px; /* eller den maxbredd du vill ha */
+  width: 100%;
   margin: 0 auto;
 }
 
@@ -16,7 +16,6 @@
   align-items: start;
   justify-items: center;
   width: 100%;
-  max-width: 1200px;
   margin: 0 auto;
 }
 
