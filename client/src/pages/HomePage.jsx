@@ -101,6 +101,26 @@ export default function HomePage() {
     <div className="page-container">
       <Header lang={lang} setLang={setLang} />
       
+      {/* Hero Section */}
+      <section className="hero-section" style={{
+        width: '100%',
+        maxWidth: 900,
+        margin: '0 auto',
+        padding: '48px 0 32px 0',
+        textAlign: 'center',
+        background: 'linear-gradient(90deg, #f5f7fa 60%, #e0c3fc 100%)',
+        borderRadius: 24,
+        boxShadow: '0 4px 32px rgba(102,126,234,0.07)',
+        marginBottom: 32
+      }}>
+        <h1 style={{ fontSize: '2.5em', fontWeight: 900, color: '#667eea', marginBottom: 12, letterSpacing: '-1px' }}>
+          FilMak Studio Poster Gallery
+        </h1>
+        <p style={{ fontSize: '1.2em', color: '#333', maxWidth: 600, margin: '0 auto' }}>
+          Welcome! Browse my custom-designed posters for weddings, baptisms, graduations, and more. Get inspired and contact me to order your own personalized print.
+        </p>
+      </section>
+
       {/* Categories Grid */}
       <section className="section-with-margin">
         <div className="images-grid">
@@ -110,10 +130,10 @@ export default function HomePage() {
                 to={`/${category.id}`}
                 style={{ textDecoration: 'none', color: 'inherit' }}
               >
-                <div className="image-card" style={{ position: 'relative' }}>
+                <div className="image-card" style={{ position: 'relative' }} tabIndex={0} aria-label={`See example posters for ${t[category.title]}`}>
                   <img 
                     src={category.image} 
-                    alt={t[category.title]} 
+                    alt={`Example ${t[category.title]} poster`} 
                   />
                   <div style={{
                     position: 'absolute',
@@ -166,10 +186,15 @@ export default function HomePage() {
             Contact me
           </div>
           <div className="contact-phone">
-            +467000395606
+            <a href="tel:+467000395606" aria-label="Call +46 70 003 95 606">+46 70 003 95 606</a>
           </div>
         </div>
       </section>
+
+      {/* Footer */}
+      <footer className="footer" role="contentinfo">
+        &copy; {new Date().getFullYear()} FilMak Studio. All rights reserved.
+      </footer>
     </div>
   );
 } 

@@ -6,10 +6,12 @@ import BirthdayPosters from './pages/BirthdayPosters.jsx';
 import GraduationPosters from './pages/GraduationPosters.jsx';
 import ExamPosters from './pages/ExamPosters.jsx';
 import InspirationPosters from './pages/InspirationPosters.jsx';
+import ScrollToTopButton from './components/ScrollToTopButton.jsx';
 
 export default function App() {
   return (
     <Router basename="/FilMak_Studio">
+      <ScrollToTopButton />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/wedding" element={<WeddingPosters />} />

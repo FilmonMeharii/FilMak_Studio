@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header.jsx';
 import '../styles/birthday.css';
@@ -46,6 +46,40 @@ export default function BirthdayPosters() {
   const [lang, setLang] = useState('sv');
   const t = translations[lang];
   const [imgModal, setImgModal] = useState(null);
+  const modalRef = useRef(null);
+
+  // Trap focus inside modal and handle keyboard navigation
+  useEffect(() => {
+    if (imgModal !== null) {
+      const handleKeyDown = (e) => {
+        if (e.key === 'Escape') {
+          setImgModal(null);
+        } else if (e.key === 'ArrowRight') {
+          setImgModal((prev) => (prev + 1) % examples.length);
+        } else if (e.key === 'ArrowLeft') {
+          setImgModal((prev) => (prev - 1 + examples.length) % examples.length);
+        } else if (e.key === 'Tab') {
+          // Trap focus
+          const focusable = modalRef.current.querySelectorAll('button, [tabindex]:not([tabindex="-1"])');
+          const first = focusable[0];
+          const last = focusable[focusable.length - 1];
+          if (!e.shiftKey && document.activeElement === last) {
+            e.preventDefault();
+            first.focus();
+          } else if (e.shiftKey && document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
+          }
+        }
+      };
+      document.body.style.overflow = 'hidden';
+      window.addEventListener('keydown', handleKeyDown);
+      return () => {
+        document.body.style.overflow = '';
+        window.removeEventListener('keydown', handleKeyDown);
+      };
+    }
+  }, [imgModal]);
 
   return (
     <div className="page-container">
@@ -74,10 +108,13 @@ export default function BirthdayPosters() {
                 className={`birthday-image-card ${getSizeClass(ex.size)}`}
                 onClick={() => setImgModal(i)}
                 title="Klicka för att förstora"
+                tabIndex={0}
+                aria-label={`Enlarge example birthday poster ${i+1}`}
               >
                 <img 
                   src={ex.src} 
-                  alt={ex.title} 
+                  alt={`Example birthday poster ${i+1}`} 
+                  loading="lazy"
                 />
               </div>
               <div style={{ 
@@ -95,22 +132,63 @@ export default function BirthdayPosters() {
 
       {/* Image Modal */}
       {imgModal !== null && (
-        <div className="modal-overlay" onClick={() => setImgModal(null)}>
-          <div className="modal-content">
-            <img 
-              src={examples[imgModal].src} 
-              alt={examples[imgModal].title} 
+        <div
+          className="modal-overlay"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Enlarged birthday poster"
+          tabIndex={-1}
+          onClick={(e) => {
+            if (e.target === e.currentTarget) setImgModal(null);
+          }}
+        >
+          <div
+            className="modal-content"
+            ref={modalRef}
+            style={{
+              transition: 'transform 0.3s cubic-bezier(.4,0,.2,1), opacity 0.3s',
+              transform: 'scale(1)',
+              opacity: 1
+            }}
+          >
+            <img
+              src={examples[imgModal].src}
+              alt={`Enlarged example birthday poster ${imgModal + 1}`}
               className="modal-image"
+              loading="lazy"
+              style={{ transition: 'opacity 0.3s' }}
             />
-            <button 
-              onClick={() => setImgModal(null)} 
+            <button
+              onClick={() => setImgModal(null)}
               className="modal-close"
+              aria-label="Close modal"
+              autoFocus
             >
               ×
+            </button>
+            <button
+              onClick={() => setImgModal((prev) => (prev - 1 + examples.length) % examples.length)}
+              className="modal-prev"
+              aria-label="Previous image"
+              style={{ position: 'absolute', left: 0, top: '50%', transform: 'translateY(-50%)', fontSize: '2em', background: 'none', border: 'none', color: '#fff', cursor: 'pointer', padding: '0 16px' }}
+            >
+              ‹
+            </button>
+            <button
+              onClick={() => setImgModal((prev) => (prev + 1) % examples.length)}
+              className="modal-next"
+              aria-label="Next image"
+              style={{ position: 'absolute', right: 0, top: '50%', transform: 'translateY(-50%)', fontSize: '2em', background: 'none', border: 'none', color: '#fff', cursor: 'pointer', padding: '0 16px' }}
+            >
+              ›
             </button>
           </div>
         </div>
       )}
+
+      <footer className="footer" role="contentinfo">
+        &copy; {new Date().getFullYear()} FilMak Studio. All rights reserved.
+      </footer>
     </div>
   );
 } 
