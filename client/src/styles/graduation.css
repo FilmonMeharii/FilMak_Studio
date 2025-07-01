@@ -48,10 +48,16 @@
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
   }
+  .graduation-image-card {
+    min-width: 0;
+  }
 }
 
 @media (max-width: 480px) {
   .graduation-images-grid {
     grid-template-columns: 1fr;
+  }
+  .graduation-image-card {
+    min-width: 0;
   }
 } 

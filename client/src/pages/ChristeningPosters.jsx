@@ -28,6 +28,7 @@ const examples = [
   { src: img1, title: 'Dopsposter 2', size: '100 x 100 cm' },
   { src: florence, title: 'Dopsposter 3', size: '80 x 100 cm' },
   { src: gozo, title: 'Dopsposter 4', size: '60 x 60 cm' },
+  { src: gozo, title: 'Dopsposter 4', size: '60 x 80 cm' },
   { src: florence2, title: 'Dopsposter 5', size: '100 x 100 cm' },
   { src: rose, title: 'Dopsposter 6', size: '80 x 100 cm' },
 ];

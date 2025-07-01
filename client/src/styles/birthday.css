@@ -48,10 +48,16 @@
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
   }
+  .birthday-image-card {
+    min-width: 0;
+  }
 }
 
 @media (max-width: 480px) {
   .birthday-images-grid {
     grid-template-columns: 1fr;
+  }
+  .birthday-image-card {
+    min-width: 0;
   }
 } 

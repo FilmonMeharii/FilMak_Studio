@@ -46,10 +46,16 @@
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
   }
+  .wedding-image-card {
+    min-width: 0;
+  }
 }
 
 @media (max-width: 480px) {
   .wedding-images-grid {
     grid-template-columns: 1fr;
+  }
+  .wedding-image-card {
+    min-width: 0;
   }
 } 
