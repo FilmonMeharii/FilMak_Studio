@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import { useState } from 'react';
 import HomePage from './pages/HomePage.jsx';
 import WeddingPosters from './pages/WeddingPosters.jsx';
@@ -15,7 +15,7 @@ export default function App() {
   const [lang, setLang] = useState('sv');
 
   return (
-    <Router basename="/FilMak_Studio">
+    <Router>
       <ScrollToTopButton />
       <FloatingContactButton lang={lang} />
       <Routes>
