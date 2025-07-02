@@ -51,11 +51,21 @@
 }
 
 @media (max-width: 480px) {
-  .exam-images-grid {
-    grid-template-columns: 1fr;
-  }
   .exam-image-card {
-    min-width: 0;
+    max-width: 220px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
+  }
+  .exam-image-card img {
+    max-width: 100%;
+    height: auto;
+  }
+  .exam-image-container div {
+    font-size: 0.85em;
+  }
+  .exam-images-grid {
+    gap: 8px;
   }
 }
 

@@ -520,25 +520,90 @@ button:focus, .nav-link:focus, .image-card:focus, .category-card:focus, .modal-c
   }
   
   .section {
-    padding: 0 16px;
+    padding: 0 8px;
+  }
+  
+  .section-with-margin {
+    margin: 16px 0 32px 0;
+    padding: 0 8px;
+  }
+  
+  .page-title {
+    font-size: 1.2em;
+    margin: 16px 0 12px 0;
+    letter-spacing: -0.5px;
+  }
+  
+  .images-grid,
+  .christening-images-grid,
+  .wedding-images-grid,
+  .birthday-images-grid,
+  .graduation-images-grid,
+  .exam-images-grid,
+  .inspiration-images-grid {
+    gap: 12px;
+  }
+  
+  .image-card,
+  .christening-image-card,
+  .wedding-image-card,
+  .birthday-image-card,
+  .graduation-image-card,
+  .exam-image-card,
+  .inspiration-image-card {
+    max-width: 220px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
+  }
+  .image-card img,
+  .christening-image-card img,
+  .wedding-image-card img,
+  .birthday-image-card img,
+  .graduation-image-card img,
+  .exam-image-card img,
+  .inspiration-image-card img {
+    max-width: 100%;
+    height: auto;
+  }
+  .christening-image-container div,
+  .wedding-image-container div,
+  .birthday-image-container div,
+  .graduation-image-container div,
+  .exam-image-container div,
+  .inspiration-image-container div {
+    font-size: 0.85em;
   }
   
   .header {
     padding: 18px 16px 0 16px;
   }
   
-  .nav-links {
+  .nav {
     flex-direction: column;
     align-items: stretch;
-    gap: 4px;
+    gap: 0;
+    width: 100%;
   }
-  
+  .nav-links {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+  }
   .nav-link {
     width: 100%;
     min-width: 0;
-    font-size: 16px;
+    font-size: 15px;
     padding: 14px 0;
     margin-bottom: 0;
+    border-radius: 8px;
+    text-align: center;
+    background: none;
+    box-shadow: none;
   }
   
   .footer { font-size: 0.9em; padding: 18px 0 6px 0; }
@@ -640,12 +705,22 @@ button:focus, .nav-link:focus, .image-card:focus, .category-card:focus, .modal-c
 }
 @media (max-width: 480px) {
   .hero-section {
-    padding: 18px 0 10px 0;
+    padding: 14px 0 8px 0;
     border-radius: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
   }
   .hero-section h1 {
-    font-size: 1.3em;
+    font-size: 1.3em !important;
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
+  }
+  .hero-section p {
+    font-size: 1em;
+    margin-bottom: 10px;
+  }
+  .section-with-margin {
+    margin: 20px 0 40px 0;
+    padding: 0 8px;
   }
 }
 

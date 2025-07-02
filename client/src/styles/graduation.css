@@ -52,11 +52,21 @@
 }
 
 @media (max-width: 480px) {
-  .graduation-images-grid {
-    grid-template-columns: 1fr;
-  }
   .graduation-image-card {
-    min-width: 0;
+    max-width: 220px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
+  }
+  .graduation-image-card img {
+    max-width: 100%;
+    height: auto;
+  }
+  .graduation-image-container div {
+    font-size: 0.85em;
+  }
+  .graduation-images-grid {
+    gap: 8px;
   }
 }
 

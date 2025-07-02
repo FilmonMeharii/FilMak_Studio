@@ -52,11 +52,21 @@
 }
 
 @media (max-width: 480px) {
-  .birthday-images-grid {
-    grid-template-columns: 1fr;
-  }
   .birthday-image-card {
-    min-width: 0;
+    max-width: 220px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
+  }
+  .birthday-image-card img {
+    max-width: 100%;
+    height: auto;
+  }
+  .birthday-image-container div {
+    font-size: 0.85em;
+  }
+  .birthday-images-grid {
+    gap: 8px;
   }
 }
 
