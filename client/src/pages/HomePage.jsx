@@ -208,7 +208,28 @@ export default function HomePage() {
 
       {/* Footer */}
       <footer className="footer" role="contentinfo">
-        &copy; {new Date().getFullYear()} FilMak Studio. All rights reserved.
+        <span>&copy; {new Date().getFullYear()} FilMak Studio. All rights reserved.</span>
+        <a
+          href="https://instagram.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Instagram"
+          className="footer-instagram-link"
+          style={{ marginLeft: 16, verticalAlign: 'middle', display: 'inline-block' }}
+        >
+          <svg
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            style={{ verticalAlign: 'middle' }}
+          >
+            <rect x="2" y="2" width="20" height="20" rx="6" fill="none" stroke="#fff" strokeWidth="2"/>
+            <circle cx="12" cy="12" r="5" fill="none" stroke="#fff" strokeWidth="2"/>
+            <circle cx="17" cy="7" r="1.2" fill="#fff"/>
+          </svg>
+        </a>
       </footer>
     </div>
   );

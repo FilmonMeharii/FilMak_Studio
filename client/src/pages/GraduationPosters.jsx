@@ -25,22 +25,21 @@ const translations = {
 };
 
 const examples = [
-  { src: gozo, title: 'Studentposter 1', size: '85 x 200 cm' },
-  { src: florence, title: 'Studentposter 2', size: '60 x 200 cm' },
-  { src: rose, title: 'Studentposter 3', size: '70 x 100 cm' },
-  { src: img1, title: 'Studentposter 4', size: '80 x 120 cm' },
-  { src: florence2, title: 'Studentposter 5', size: '50 x 100 cm' },
-  { src: gozo, title: 'Studentposter 6', size: '85 x 200 cm' },
+  { src: gozo, title: 'Studentposter 1', size: 'A0 (84 x 119 cm)' },
+  { src: florence, title: 'Studentposter 2', size: 'A1 (59 x 84 cm)' },
+  { src: rose, title: 'Studentposter 3', size: 'A2 (42 x 59 cm)' },
+  { src: img1, title: 'Studentposter 4', size: 'A1 (59 x 84 cm)' },
+  { src: florence2, title: 'Studentposter 5', size: 'A3 (30 x 42 cm)' },
+  { src: gozo, title: 'Studentposter 6', size: 'A0 (84 x 119 cm)' },
 ];
 
 // Function to get CSS class based on size
 const getSizeClass = (size) => {
-  if (size === '85 x 200 cm') return 'graduation-poster-85x200';
-  if (size === '60 x 200 cm') return 'graduation-poster-60x200';
-  if (size === '70 x 100 cm') return 'graduation-poster-70x100';
-  if (size === '80 x 120 cm') return 'graduation-poster-80x120';
-  if (size === '50 x 100 cm') return 'graduation-poster-50x150';
-  return 'graduation-poster-85x200'; // default
+  if (size === 'A0 (84 x 119 cm)') return 'graduation-poster-a0';
+  if (size === 'A1 (59 x 84 cm)') return 'graduation-poster-a1';
+  if (size === 'A2 (42 x 59 cm)') return 'graduation-poster-a2';
+  if (size === 'A3 (30 x 42 cm)') return 'graduation-poster-a3';
+  return 'graduation-poster-a1'; // default
 };
 
 export default function GraduationPosters() {
@@ -225,7 +224,28 @@ export default function GraduationPosters() {
       )}
 
       <footer className="footer" role="contentinfo">
-        &copy; {new Date().getFullYear()} FilMak Studio. All rights reserved.
+        <span>&copy; {new Date().getFullYear()} FilMak Studio. All rights reserved.</span>
+        <a
+          href="https://instagram.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Instagram"
+          className="footer-instagram-link"
+          style={{ marginLeft: 16, verticalAlign: 'middle', display: 'inline-block' }}
+        >
+          <svg
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            style={{ verticalAlign: 'middle' }}
+          >
+            <rect x="2" y="2" width="20" height="20" rx="6" fill="none" stroke="#fff" strokeWidth="2"/>
+            <circle cx="12" cy="12" r="5" fill="none" stroke="#fff" strokeWidth="2"/>
+            <circle cx="17" cy="7" r="1.2" fill="#fff"/>
+          </svg>
+        </a>
       </footer>
     </div>
   );
