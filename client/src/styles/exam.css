@@ -3,8 +3,8 @@
   width: 100%;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 40px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
   align-items: start;
 }
 
@@ -35,15 +35,21 @@
 }
 
 /* Specific poster sizes for exam - responsive dimensions */
-.exam-poster-a1 { width: 85%; aspect-ratio: 59/84; height: auto; margin: 0 auto; display: block; }
-.exam-poster-a2 { width: 70%; aspect-ratio: 42/59; height: auto; margin: 0 auto; display: block; }
-.exam-poster-a3 { width: 55%; aspect-ratio: 30/42; height: auto; margin: 0 auto; display: block; }
+.exam-poster-a1 { width: 45%; aspect-ratio: 59/84; height: auto; margin: 0 auto; display: block; }
+.exam-poster-a2 { width: 40%; aspect-ratio: 42/59; height: auto; margin: 0 auto; display: block; }
+.exam-poster-a3 { width: 35%; aspect-ratio: 30/42; height: auto; margin: 0 auto; display: block; }
 
 /* Responsive */
+@media (max-width: 1024px) {
+  .exam-images-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
 @media (max-width: 768px) {
   .exam-images-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+    gap: 8px;
   }
   .exam-image-card {
     min-width: 0;
@@ -52,7 +58,7 @@
 
 @media (max-width: 480px) {
   .exam-image-card {
-    max-width: 220px;
+    max-width: 120px;
     margin-left: auto;
     margin-right: auto;
     padding: 0;

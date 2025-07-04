@@ -4,7 +4,7 @@ import Header from '../components/Header.jsx';
 import florence from '../assets/florence.jpg';
 import florence2 from '../assets/florence2.jpg';
 import gozo from '../assets/Gozo.webp';
-import rose from '../assets/rose.jpg';
+import rose from '../assets/dop/dop (100 x 60 cm).png';
 import img1 from '../assets/61647459de00cb906f4996e6006e73a0.jpg';
 
 const translations = {

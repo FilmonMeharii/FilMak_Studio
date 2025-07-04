@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom';
 import Header from '../components/Header.jsx';
 import { useSwipeGesture } from '../hooks/useSwipeGesture.js';
 import '../styles/christening.css';
-import dop from '../assets/dop.png';
-import dop100x60 from '../assets/dop (100 x 60 cm).png';
+import dop from '../assets/dop/dop.png';
+import dop100x60 from '../assets/dop/dop (100 x 60 cm).png';
+import dopBoy100x60 from '../assets/dop/dop boy (100 x 60 cm) (2).png';
 
 const translations = {
   sv: {
@@ -22,15 +23,18 @@ const translations = {
 };
 
 const examples = [
-  { src: dop, title: 'Dopsposter 7', size: 'Rollup (85 x 200 cm)' },
-  { src: dop, title: 'Dopsposter 8', size: 'Custom (100 x 250 cm)' },
   { src: dop, title: 'Dopsposter 1', size: 'A3 (30 x 42 cm)' },
-  { src: dop, title: 'Dopsposter 2', size: 'A1 (59 x 84 cm)' },
-  { src: dop, title: 'Dopsposter 3', size: 'A2 (42 x 59 cm)' },
+  { src: dop, title: 'Dopsposter 2', size: 'A2 (42 x 59 cm)' },
+  { src: dop, title: 'Dopsposter 3', size: 'A1 (59 x 84 cm)' },
   { src: dop, title: 'Dopsposter 4', size: 'Rollup (85 x 200 cm)' },
-  { src: dop, title: 'Dopsposter 5', size: 'A2 (42 x 59 cm)' },
-  { src: dop, title: 'Dopsposter 6', size: 'A1 (59 x 84 cm)' }
-  
+  { src: dop, title: 'Dopsposter 5', size: 'Custom (100 x 250 cm)' },
+  { src: dop, title: 'Dopsposter 6', size: 'A3 (30 x 42 cm)' },
+  { src: dop, title: 'Dopsposter 7', size: 'A2 (42 x 59 cm)' },
+  { src: dop, title: 'Dopsposter 8', size: 'A1 (59 x 84 cm)' },
+  { src: dop, title: 'Dopsposter 9', size: 'Rollup (85 x 200 cm)' },
+  { src: dop, title: 'Dopsposter 10', size: 'Custom (100 x 250 cm)' },
+  { src: dop, title: 'Dopsposter 11', size: 'A3 (30 x 42 cm)' },
+  { src: dop, title: 'Dopsposter 12', size: 'A2 (42 x 59 cm)' }
 ];
 
 // Function to get CSS class based on size
@@ -43,14 +47,17 @@ const getSizeClass = (size) => {
   return 'christening-poster-a3'; // default
 };
 
-
-
 export default function ChristeningPosters() {
   const [lang, setLang] = useState('sv');
   const t = translations[lang];
   const [imgModal, setImgModal] = useState(null);
   const modalRef = useRef(null);
   const [loadedImages, setLoadedImages] = useState(new Set());
+
+  const featuredImages = [
+    { src: dop100x60, title: 'Dop poster 100x60cm', size: '100 x 60 cm' },
+    { src: dopBoy100x60, title: 'Dop Boy poster 100x60cm', size: '100 x 60 cm' }
+  ];
 
   // Swipe gestures for mobile
   const handleSwipeLeft = () => {
@@ -115,22 +122,37 @@ export default function ChristeningPosters() {
         </Link>
       </div>
 
-      {/* New dop image at the top of the grid */}
-      <div className="dop-featured-image-container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', margin: '24px 0 8px 0' }}>
-        <img 
-          src={dop100x60} 
-          alt="Dop poster 100x60cm"
-          style={{
-            maxWidth: '100%',
-            height: 'auto',
-            maxHeight: '320px',
-            borderRadius: '18px',
-            boxShadow: '0 4px 24px rgba(0,0,0,0.13)',
-            objectFit: 'contain',
-            background: '#fff',
-            padding: '8px'
-          }}
-        />
+      {/* Featured dop images at the top of the grid, both clickable */}
+      <div className="dop-featured-image-container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '24px', margin: '24px 0 8px 0' }}>
+        {featuredImages.map((img, idx) => (
+          <div
+            key={img.title}
+            className="christening-image-card"
+            onClick={() => setImgModal(-1 - idx)}
+            title="Klicka för att förstora"
+            tabIndex={0}
+            aria-label={`Enlarge featured christening poster ${idx+1}`}
+            style={{ cursor: 'pointer', maxWidth: '320px', width: 'auto', background: 'none', boxShadow: 'none', border: 'none' }}
+          >
+            <img 
+              src={img.src} 
+              alt={img.title}
+              style={{
+                maxWidth: '100%',
+                maxHeight: '320px',
+                height: 'auto',
+                width: 'auto',
+                objectFit: 'contain',
+                borderRadius: '18px',
+                display: 'block',
+                margin: '0 auto',
+                background: 'none',
+                boxShadow: 'none',
+                padding: 0
+              }}
+            />
+          </div>
+        ))}
       </div>
 
       {/* Images Grid */}
@@ -202,8 +224,8 @@ export default function ChristeningPosters() {
             }}
           >
             <img 
-              src={examples[imgModal].src} 
-              alt={`Enlarged example christening poster ${imgModal + 1}`}
+              src={imgModal < 0 ? featuredImages[-1 - imgModal].src : examples[imgModal].src} 
+              alt={imgModal < 0 ? featuredImages[-1 - imgModal].title : `Enlarged example christening poster ${imgModal + 1}`}
               className="modal-image"
               loading="lazy"
               style={{ transition: 'opacity 0.3s' }}

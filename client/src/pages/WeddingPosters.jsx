@@ -25,12 +25,26 @@ const translations = {
 };
 
 const examples = [
-  { src: florence, title: 'Bröllopsposter 1', size: 'A2 (42 x 59 cm)' },
-  { src: florence2, title: 'Bröllopsposter 2', size: 'A1 (59 x 84 cm)' },
-  { src: gozo, title: 'Bröllopsposter 3', size: 'A0 (84 x 119 cm)' },
-  { src: rose, title: 'Bröllopsposter 4', size: 'Rollup (85 x 200 cm)' },
-  { src: img1, title: 'Bröllopsposter 5', size: 'A3 (30 x 42 cm)' },
-  { src: florence, title: 'Bröllopsposter 6', size: 'Rollup (85 x 200 cm)' },
+  { src: florence, title: 'Bröllopsposter 1', size: 'A3 (30 x 42 cm)' },
+  { src: florence, title: 'Bröllopsposter 2', size: 'A2 (42 x 59 cm)' },
+  { src: florence, title: 'Bröllopsposter 3', size: 'A1 (59 x 84 cm)' },
+  { src: florence, title: 'Bröllopsposter 4', size: 'A0 (84 x 119 cm)' },
+  { src: florence, title: 'Bröllopsposter 5', size: 'Rollup (85 x 200 cm)' },
+  { src: florence2, title: 'Bröllopsposter 6', size: 'A3 (30 x 42 cm)' },
+  { src: florence2, title: 'Bröllopsposter 7', size: 'A2 (42 x 59 cm)' },
+  { src: florence2, title: 'Bröllopsposter 8', size: 'A1 (59 x 84 cm)' },
+  { src: florence2, title: 'Bröllopsposter 9', size: 'A0 (84 x 119 cm)' },
+  { src: gozo, title: 'Bröllopsposter 10', size: 'A3 (30 x 42 cm)' },
+  { src: gozo, title: 'Bröllopsposter 11', size: 'A2 (42 x 59 cm)' },
+  { src: gozo, title: 'Bröllopsposter 12', size: 'A1 (59 x 84 cm)' },
+  { src: gozo, title: 'Bröllopsposter 13', size: 'A0 (84 x 119 cm)' },
+  { src: rose, title: 'Bröllopsposter 14', size: 'A3 (30 x 42 cm)' },
+  { src: rose, title: 'Bröllopsposter 15', size: 'A2 (42 x 59 cm)' },
+  { src: rose, title: 'Bröllopsposter 16', size: 'A1 (59 x 84 cm)' },
+  { src: rose, title: 'Bröllopsposter 17', size: 'Rollup (85 x 200 cm)' },
+  { src: img1, title: 'Bröllopsposter 18', size: 'A3 (30 x 42 cm)' },
+  { src: img1, title: 'Bröllopsposter 19', size: 'A2 (42 x 59 cm)' },
+  { src: img1, title: 'Bröllopsposter 20', size: 'A1 (59 x 84 cm)' }
 ];
 
 // Function to get CSS class based on size

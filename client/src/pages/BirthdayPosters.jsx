@@ -25,12 +25,20 @@ const translations = {
 };
 
 const examples = [
-  { src: img1, title: 'Födelsedagsposter 1', size: 'A3 (30 x 42 cm)' },
-  { src: rose, title: 'Födelsedagsposter 2', size: 'A2 (42 x 59 cm)' },
-  { src: florence, title: 'Födelsedagsposter 3', size: 'A1 (59 x 84 cm)' },
-  { src: gozo, title: 'Födelsedagsposter 4', size: 'A2 (42 x 59 cm)' },
-  { src: florence2, title: 'Födelsedagsposter 5', size: 'A3 (30 x 42 cm)' },
-  { src: img1, title: 'Födelsedagsposter 6', size: 'A4 (21 x 30 cm)' },
+  { src: img1, title: 'Födelsedagsposter 1', size: 'A4 (21 x 30 cm)' },
+  { src: img1, title: 'Födelsedagsposter 2', size: 'A3 (30 x 42 cm)' },
+  { src: img1, title: 'Födelsedagsposter 3', size: 'A2 (42 x 59 cm)' },
+  { src: rose, title: 'Födelsedagsposter 4', size: 'A4 (21 x 30 cm)' },
+  { src: rose, title: 'Födelsedagsposter 5', size: 'A3 (30 x 42 cm)' },
+  { src: rose, title: 'Födelsedagsposter 6', size: 'A2 (42 x 59 cm)' },
+  { src: florence, title: 'Födelsedagsposter 7', size: 'A3 (30 x 42 cm)' },
+  { src: florence, title: 'Födelsedagsposter 8', size: 'A2 (42 x 59 cm)' },
+  { src: florence, title: 'Födelsedagsposter 9', size: 'A1 (59 x 84 cm)' },
+  { src: gozo, title: 'Födelsedagsposter 10', size: 'A2 (42 x 59 cm)' },
+  { src: gozo, title: 'Födelsedagsposter 11', size: 'A1 (59 x 84 cm)' },
+  { src: florence2, title: 'Födelsedagsposter 12', size: 'A3 (30 x 42 cm)' },
+  { src: florence2, title: 'Födelsedagsposter 13', size: 'A2 (42 x 59 cm)' },
+  { src: florence2, title: 'Födelsedagsposter 14', size: 'A1 (59 x 84 cm)' }
 ];
 
 // Function to get CSS class based on size

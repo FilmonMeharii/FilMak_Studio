@@ -3,8 +3,8 @@
   width: 100%;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 40px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
   align-items: start;
 }
 
@@ -35,17 +35,23 @@
 }
 
 /* Specific poster sizes for christening - responsive dimensions */
-.christening-poster-a1 { width: 85%; aspect-ratio: 59/84; height: auto; margin: 0 auto; display: block; }
-.christening-poster-a2 { width: 70%; aspect-ratio: 42/59; height: auto; margin: 0 auto; display: block; }
-.christening-poster-a3 { width: 55%; aspect-ratio: 30/42; height: auto; margin: 0 auto; display: block; }
-.christening-poster-rollup { width: 90%; aspect-ratio: 85/200; height: auto; margin: 0 auto; display: block; }
-.christening-poster-custom { width: 95%; aspect-ratio: 100/250; height: auto; margin: 0 auto; display: block; }
+.christening-poster-a1 { width: 45%; aspect-ratio: 59/84; height: auto; margin: 0 auto; display: block; }
+.christening-poster-a2 { width: 40%; aspect-ratio: 42/59; height: auto; margin: 0 auto; display: block; }
+.christening-poster-a3 { width: 35%; aspect-ratio: 30/42; height: auto; margin: 0 auto; display: block; }
+.christening-poster-rollup { width: 50%; aspect-ratio: 85/200; height: auto; margin: 0 auto; display: block; }
+.christening-poster-custom { width: 55%; aspect-ratio: 100/250; height: auto; margin: 0 auto; display: block; }
 
 /* Responsive */
+@media (max-width: 1024px) {
+  .christening-images-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
 @media (max-width: 768px) {
   .christening-images-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+    gap: 8px;
   }
   .christening-image-card {
     min-width: 0;
@@ -54,7 +60,7 @@
 
 @media (max-width: 480px) {
   .christening-image-card {
-    max-width: 220px;
+    max-width: 120px;
     margin-left: auto;
     margin-right: auto;
     padding: 0;

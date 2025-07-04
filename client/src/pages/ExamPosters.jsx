@@ -25,12 +25,19 @@ const translations = {
 };
 
 const examples = [
-  { src: florence2, title: 'Examposter 1', size: 'A2 (42 x 59 cm)' },
-  { src: img1, title: 'Examposter 2', size: 'A3 (30 x 42 cm)' },
-  { src: rose, title: 'Examposter 3', size: 'A2 (42 x 59 cm)' },
-  { src: gozo, title: 'Examposter 4', size: 'A1 (59 x 84 cm)' },
-  { src: florence, title: 'Examposter 5', size: 'A3 (30 x 42 cm)' },
-  { src: florence2, title: 'Examposter 6', size: 'A2 (42 x 59 cm)' },
+  { src: florence2, title: 'Examposter 1', size: 'A3 (30 x 42 cm)' },
+  { src: florence2, title: 'Examposter 2', size: 'A2 (42 x 59 cm)' },
+  { src: florence2, title: 'Examposter 3', size: 'A1 (59 x 84 cm)' },
+  { src: img1, title: 'Examposter 4', size: 'A3 (30 x 42 cm)' },
+  { src: img1, title: 'Examposter 5', size: 'A2 (42 x 59 cm)' },
+  { src: rose, title: 'Examposter 6', size: 'A3 (30 x 42 cm)' },
+  { src: rose, title: 'Examposter 7', size: 'A2 (42 x 59 cm)' },
+  { src: rose, title: 'Examposter 8', size: 'A1 (59 x 84 cm)' },
+  { src: gozo, title: 'Examposter 9', size: 'A2 (42 x 59 cm)' },
+  { src: gozo, title: 'Examposter 10', size: 'A1 (59 x 84 cm)' },
+  { src: florence, title: 'Examposter 11', size: 'A3 (30 x 42 cm)' },
+  { src: florence, title: 'Examposter 12', size: 'A2 (42 x 59 cm)' },
+  { src: florence, title: 'Examposter 13', size: 'A1 (59 x 84 cm)' }
 ];
 
 // Function to get CSS class based on size

@@ -11,8 +11,8 @@
 
 .inspiration-images-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 40px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
   align-items: start;
   justify-items: center;
   width: 100%;
@@ -46,14 +46,14 @@
 
 /* Specific poster sizes for inspiration - actual pixel dimensions */
 .inspiration-poster-10x15 { width: 20%; aspect-ratio: 10/15; height: auto; margin: 0 auto; display: block; }
-.inspiration-poster-15x20 { width: 30%; aspect-ratio: 15/20; height: auto; margin: 0 auto; display: block; }
-.inspiration-poster-20x10 { width: 40%; aspect-ratio: 20/10; height: auto; margin: 0 auto; display: block; }
-.inspiration-poster-20x30 { width: 40%; aspect-ratio: 20/30; height: auto; margin: 0 auto; display: block; }
-.inspiration-poster-25x35 { width: 50%; aspect-ratio: 25/35; height: auto; margin: 0 auto; display: block; }
-.inspiration-poster-30x15 { width: 60%; aspect-ratio: 30/15; height: auto; margin: 0 auto; display: block; }
-.inspiration-poster-30x40 { width: 60%; aspect-ratio: 30/40; height: auto; margin: 0 auto; display: block; }
-.inspiration-poster-40x60 { width: 80%; aspect-ratio: 40/60; height: auto; margin: 0 auto; display: block; }
-.inspiration-poster-50x50 { width: 100%; aspect-ratio: 1/1; height: auto; margin: 0 auto; display: block; }
+.inspiration-poster-15x20 { width: 25%; aspect-ratio: 15/20; height: auto; margin: 0 auto; display: block; }
+.inspiration-poster-20x10 { width: 30%; aspect-ratio: 20/10; height: auto; margin: 0 auto; display: block; }
+.inspiration-poster-20x30 { width: 30%; aspect-ratio: 20/30; height: auto; margin: 0 auto; display: block; }
+.inspiration-poster-25x35 { width: 35%; aspect-ratio: 25/35; height: auto; margin: 0 auto; display: block; }
+.inspiration-poster-30x15 { width: 40%; aspect-ratio: 30/15; height: auto; margin: 0 auto; display: block; }
+.inspiration-poster-30x40 { width: 40%; aspect-ratio: 30/40; height: auto; margin: 0 auto; display: block; }
+.inspiration-poster-40x60 { width: 45%; aspect-ratio: 40/60; height: auto; margin: 0 auto; display: block; }
+.inspiration-poster-50x50 { width: 45%; aspect-ratio: 1/1; height: auto; margin: 0 auto; display: block; }
 
 /* Specific poster sizes for inspiration - responsive dimensions */
 .inspiration-poster-60x80 {
@@ -92,10 +92,16 @@
 }
 
 /* Responsive */
+@media (max-width: 1024px) {
+  .inspiration-images-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
 @media (max-width: 768px) {
   .inspiration-images-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+    gap: 8px;
   }
   .inspiration-image-card {
     min-width: 0;
@@ -104,7 +110,7 @@
 
 @media (max-width: 480px) {
   .inspiration-image-card {
-    max-width: 100%;
+    max-width: 120px;
     margin-left: 0;
     margin-right: 0;
     padding: 0;

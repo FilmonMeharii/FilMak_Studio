@@ -25,12 +25,22 @@ const translations = {
 };
 
 const examples = [
-  { src: gozo, title: 'Studentposter 1', size: 'A0 (84 x 119 cm)' },
-  { src: florence, title: 'Studentposter 2', size: 'A1 (59 x 84 cm)' },
-  { src: rose, title: 'Studentposter 3', size: 'A2 (42 x 59 cm)' },
-  { src: img1, title: 'Studentposter 4', size: 'A1 (59 x 84 cm)' },
-  { src: florence2, title: 'Studentposter 5', size: 'A3 (30 x 42 cm)' },
-  { src: gozo, title: 'Studentposter 6', size: 'A0 (84 x 119 cm)' },
+  { src: gozo, title: 'Studentposter 1', size: 'A3 (30 x 42 cm)' },
+  { src: gozo, title: 'Studentposter 2', size: 'A2 (42 x 59 cm)' },
+  { src: gozo, title: 'Studentposter 3', size: 'A1 (59 x 84 cm)' },
+  { src: gozo, title: 'Studentposter 4', size: 'A0 (84 x 119 cm)' },
+  { src: florence, title: 'Studentposter 5', size: 'A3 (30 x 42 cm)' },
+  { src: florence, title: 'Studentposter 6', size: 'A2 (42 x 59 cm)' },
+  { src: florence, title: 'Studentposter 7', size: 'A1 (59 x 84 cm)' },
+  { src: rose, title: 'Studentposter 8', size: 'A3 (30 x 42 cm)' },
+  { src: rose, title: 'Studentposter 9', size: 'A2 (42 x 59 cm)' },
+  { src: rose, title: 'Studentposter 10', size: 'A1 (59 x 84 cm)' },
+  { src: img1, title: 'Studentposter 11', size: 'A3 (30 x 42 cm)' },
+  { src: img1, title: 'Studentposter 12', size: 'A2 (42 x 59 cm)' },
+  { src: img1, title: 'Studentposter 13', size: 'A1 (59 x 84 cm)' },
+  { src: florence2, title: 'Studentposter 14', size: 'A3 (30 x 42 cm)' },
+  { src: florence2, title: 'Studentposter 15', size: 'A2 (42 x 59 cm)' },
+  { src: florence2, title: 'Studentposter 16', size: 'A1 (59 x 84 cm)' }
 ];
 
 // Function to get CSS class based on size
