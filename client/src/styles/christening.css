@@ -39,6 +39,7 @@
 .christening-poster-a2 { width: 70%; aspect-ratio: 42/59; height: auto; margin: 0 auto; display: block; }
 .christening-poster-a3 { width: 55%; aspect-ratio: 30/42; height: auto; margin: 0 auto; display: block; }
 .christening-poster-rollup { width: 90%; aspect-ratio: 85/200; height: auto; margin: 0 auto; display: block; }
+.christening-poster-custom { width: 95%; aspect-ratio: 100/250; height: auto; margin: 0 auto; display: block; }
 
 /* Responsive */
 @media (max-width: 768px) {
@@ -189,4 +190,4 @@
     height: 28px;
     font-size: 12px;
   }
-}
+} 

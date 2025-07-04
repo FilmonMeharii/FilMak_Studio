@@ -3,11 +3,7 @@ import { Link } from 'react-router-dom';
 import Header from '../components/Header.jsx';
 import { useSwipeGesture } from '../hooks/useSwipeGesture.js';
 import '../styles/christening.css';
-import florence from '../assets/florence.jpg';
-import florence2 from '../assets/florence2.jpg';
-import gozo from '../assets/Gozo.webp';
-import rose from '../assets/rose.jpg';
-import img1 from '../assets/61647459de00cb906f4996e6006e73a0.jpg';
+import dop from '../assets/dop.png';
 
 const translations = {
   sv: {
@@ -25,13 +21,15 @@ const translations = {
 };
 
 const examples = [
-  { src: rose, title: 'Dopsposter 1', size: 'A3 (30 x 42 cm)' },
-  { src: img1, title: 'Dopsposter 2', size: 'A1 (59 x 84 cm)' },
-  { src: florence, title: 'Dopsposter 3', size: 'A2 (42 x 59 cm)' },
-  { src: gozo, title: 'Dopsposter 4', size: 'Rollup (85 x 200 cm)' },
-  { src: gozo, title: 'Dopsposter 5', size: 'A2 (42 x 59 cm)' },
-  { src: florence2, title: 'Dopsposter 6', size: 'A1 (59 x 84 cm)' },
-  { src: rose, title: 'Dopsposter 7', size: 'Rollup (85 x 200 cm)' },
+  { src: dop, title: 'Dopsposter 7', size: 'Rollup (85 x 200 cm)' },
+  { src: dop, title: 'Dopsposter 8', size: 'Custom (100 x 250 cm)' },
+  { src: dop, title: 'Dopsposter 1', size: 'A3 (30 x 42 cm)' },
+  { src: dop, title: 'Dopsposter 2', size: 'A1 (59 x 84 cm)' },
+  { src: dop, title: 'Dopsposter 3', size: 'A2 (42 x 59 cm)' },
+  { src: dop, title: 'Dopsposter 4', size: 'Rollup (85 x 200 cm)' },
+  { src: dop, title: 'Dopsposter 5', size: 'A2 (42 x 59 cm)' },
+  { src: dop, title: 'Dopsposter 6', size: 'A1 (59 x 84 cm)' }
+  
 ];
 
 // Function to get CSS class based on size
@@ -40,8 +38,11 @@ const getSizeClass = (size) => {
   if (size === 'A2 (42 x 59 cm)') return 'christening-poster-a2';
   if (size === 'A1 (59 x 84 cm)') return 'christening-poster-a1';
   if (size === 'Rollup (85 x 200 cm)') return 'christening-poster-rollup';
+  if (size === 'Custom (100 x 250 cm)') return 'christening-poster-custom';
   return 'christening-poster-a3'; // default
 };
+
+
 
 export default function ChristeningPosters() {
   const [lang, setLang] = useState('sv');
