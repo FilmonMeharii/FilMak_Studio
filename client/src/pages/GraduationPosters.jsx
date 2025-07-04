@@ -113,13 +113,6 @@ export default function GraduationPosters() {
         </Link>
       </div>
 
-      {/* Title */}
-      <section className="section">
-        <h1 className="page-title">
-          {t.title}
-        </h1>
-      </section>
-
       {/* Images Grid */}
       <section className="section-with-margin">
         <div className="graduation-images-grid">

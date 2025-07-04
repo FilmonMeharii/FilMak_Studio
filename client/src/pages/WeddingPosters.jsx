@@ -114,13 +114,6 @@ export default function WeddingPosters() {
         </Link>
       </div>
 
-      {/* Title */}
-      <section className="section">
-        <h1 className="page-title">
-          {t.title}
-        </h1>
-      </section>
-
       {/* Images Grid */}
       <section className="section-with-margin">
         <div className="wedding-images-grid">

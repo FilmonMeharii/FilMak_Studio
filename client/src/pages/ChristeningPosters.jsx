@@ -4,6 +4,7 @@ import Header from '../components/Header.jsx';
 import { useSwipeGesture } from '../hooks/useSwipeGesture.js';
 import '../styles/christening.css';
 import dop from '../assets/dop.png';
+import dop100x60 from '../assets/dop (100 x 60 cm).png';
 
 const translations = {
   sv: {
@@ -107,7 +108,6 @@ export default function ChristeningPosters() {
   return (
     <div className="page-container">
       <Header lang={lang} setLang={setLang} />
-      
       {/* Back to home */}
       <div className="section">
         <Link to="/" className="back-link">
@@ -115,12 +115,23 @@ export default function ChristeningPosters() {
         </Link>
       </div>
 
-      {/* Title */}
-      <section className="section">
-        <h1 className="page-title">
-          {t.title}
-        </h1>
-      </section>
+      {/* New dop image at the top of the grid */}
+      <div className="dop-featured-image-container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', margin: '24px 0 8px 0' }}>
+        <img 
+          src={dop100x60} 
+          alt="Dop poster 100x60cm"
+          style={{
+            maxWidth: '100%',
+            height: 'auto',
+            maxHeight: '320px',
+            borderRadius: '18px',
+            boxShadow: '0 4px 24px rgba(0,0,0,0.13)',
+            objectFit: 'contain',
+            background: '#fff',
+            padding: '8px'
+          }}
+        />
+      </div>
 
       {/* Images Grid */}
       <section className="section-with-margin">
@@ -190,15 +201,15 @@ export default function ChristeningPosters() {
               opacity: 1
             }}
           >
-            <img
-              src={examples[imgModal].src}
+            <img 
+              src={examples[imgModal].src} 
               alt={`Enlarged example christening poster ${imgModal + 1}`}
               className="modal-image"
               loading="lazy"
               style={{ transition: 'opacity 0.3s' }}
             />
-            <button
-              onClick={() => setImgModal(null)}
+            <button 
+              onClick={() => setImgModal(null)} 
               className="modal-close"
               aria-label="Close modal"
               autoFocus
