@@ -3,11 +3,6 @@ import { Link } from 'react-router-dom';
 import Header from '../components/Header.jsx';
 import { useSwipeGesture } from '../hooks/useSwipeGesture.js';
 import '../styles/inspiration.css';
-import florence from '../assets/florence.jpg';
-import florence2 from '../assets/florence2.jpg';
-import gozo from '../assets/Gozo.webp';
-import rose from '../assets/rose.jpg';
-import img1 from '../assets/61647459de00cb906f4996e6006e73a0.jpg';
 import tiezazat10 from '../assets/inspiration/10 tiezazat.png';
 import tiezazat10_2 from '../assets/inspiration/10 tiezazat 2.png';
 import etiZmkah from '../assets/inspiration/eti zmkah.png';
@@ -32,45 +27,49 @@ const translations = {
 };
 
 const examples = [
-  { src: tiezazat10, title: '10 tiezazat 1', size: '10 x 15 cm' },
-  { src: tiezazat10, title: '10 tiezazat 2', size: '15 x 20 cm' },
-  { src: tiezazat10, title: '10 tiezazat 3', size: '20 x 30 cm' },
   { src: tiezazat10_2, title: '10 tiezazat 2 - 1', size: '10 x 15 cm' },
-  { src: tiezazat10_2, title: '10 tiezazat 2 - 2', size: '15 x 20 cm' },
+  { src: tiezazat10_2, title: '10 tiezazat 2 - 2', size: '15 x 30 cm' },
   { src: tiezazat10_2, title: '10 tiezazat 2 - 3', size: '20 x 30 cm' },
-  { src: etiZmkah, title: 'eti zmkah 1', size: '10 x 15 cm' },
+  { src: etiZmkah, title: 'eti zmkah 1', size: '20 x 10 cm' },
   { src: etiZmkah, title: 'eti zmkah 2', size: '15 x 10 cm' },
-  { src: etiZmkah, title: 'eti zmkah 3', size: '20 x 30 cm' },
+  { src: etiZmkah, title: 'eti zmkah 3', size: '30 x 20 cm' },
   { src: gerkaleyIkaEmo, title: 'gerkaley ika emo 1', size: '10 x 15 cm' },
   { src: gerkaleyIkaEmo, title: 'gerkaley ika emo 2', size: '15 x 20 cm' },
   { src: gerkaleyIkaEmo, title: 'gerkaley ika emo 3', size: '20 x 30 cm' },
-  { src: nabBetEgziabiher, title: 'nab bet egziabiher 1', size: '10 x 15 cm' },
-  { src: nabBetEgziabiher, title: 'nab bet egziabiher 2', size: '15 x 20 cm' },
-  { src: nabBetEgziabiher, title: 'nab bet egziabiher 3', size: '20 x 30 cm' },
+  { src: nabBetEgziabiher, title: 'nab bet egziabiher 1', size: '20 x 10 cm' },
+  { src: nabBetEgziabiher, title: 'nab bet egziabiher 2', size: '40 x 25 cm' },
+  { src: nabBetEgziabiher, title: 'nab bet egziabiher 3', size: '30 x 20 cm' },
   { src: OAmlakey, title: 'O Amlakey 1', size: '15 x 20 cm' },
   { src: OAmlakey, title: 'O Amlakey 2', size: '20 x 30 cm' },
   { src: OAmlakey, title: 'O Amlakey 3', size: '30 x 40 cm' },
-  { src: xruyLbiFtereley, title: 'xruy lbi ftereley 1', size: '10 x 15 cm' },
-  { src: xruyLbiFtereley, title: 'xruy lbi ftereley 2', size: '15 x 10 cm' },
-  { src: xruyLbiFtereley, title: 'xruy lbi ftereley 3', size: '20 x 30 cm' }
+  { src: tiezazat10, title: '10 tiezazat 1', size: '10 x 15 cm' },
+  { src: tiezazat10, title: '10 tiezazat 2', size: '15 x 20 cm' },
+  { src: tiezazat10, title: '10 tiezazat 3', size: '20 x 30 cm' },
+  { src: xruyLbiFtereley, title: 'xruy lbi ftereley 1', size: '15 x 10 cm' },
+  { src: xruyLbiFtereley, title: 'xruy lbi ftereley 2', size: '15 x 15 cm' },
+  { src: xruyLbiFtereley, title: 'xruy lbi ftereley 3', size: '30 x 20 cm' }
 ];
 
 // Function to get CSS class based on size
 const getSizeClass = (size) => {
   if (size === '10 x 15 cm') return 'inspiration-poster-10x15';
+  if (size === '15 x 10 cm') return 'inspiration-poster-15x10';
+  if (size === '15 x 15 cm') return 'inspiration-poster-15x15';
   if (size === '15 x 20 cm') return 'inspiration-poster-15x20';
+  if (size === '15 x 30 cm') return 'inspiration-poster-15x30';
   if (size === '20 x 10 cm') return 'inspiration-poster-20x10';
   if (size === '20 x 30 cm') return 'inspiration-poster-20x30';
   if (size === '25 x 35 cm') return 'inspiration-poster-25x35';
   if (size === '30 x 15 cm') return 'inspiration-poster-30x15';
+  if (size === '30 x 20 cm') return 'inspiration-poster-30x20';
   if (size === '30 x 40 cm') return 'inspiration-poster-30x40';
+  if (size === '40 x 25 cm') return 'inspiration-poster-40x25';
   if (size === '40 x 60 cm') return 'inspiration-poster-40x60';
   if (size === '50 x 50 cm') return 'inspiration-poster-50x50';
   return 'inspiration-poster-10x15'; // default
 };
 
-export default function InspirationPosters() {
-  const [lang, setLang] = useState('sv');
+export default function InspirationPosters({ lang, setLang }) {
   const t = translations[lang];
   const [imgModal, setImgModal] = useState(null);
   const modalRef = useRef(null);
@@ -269,4 +268,4 @@ export default function InspirationPosters() {
       </footer>
     </div>
   );
-} 
+}

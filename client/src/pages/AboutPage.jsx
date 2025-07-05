@@ -50,8 +50,7 @@ const translations = {
   }
 };
 
-export default function AboutPage() {
-  const [lang, setLang] = useState('sv');
+export default function AboutPage({ lang, setLang }) {
   const t = translations[lang];
 
   return (

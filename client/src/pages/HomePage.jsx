@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header.jsx';
 import florence from '../assets/florence.jpg';
@@ -93,52 +93,39 @@ const getAspectRatio = (sizeStr) => {
   return 100; // Default square if no match
 };
 
-export default function HomePage() {
-  const [lang, setLang] = useState('sv');
+export default function HomePage({ lang, setLang }) {
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const t = translations[lang];
 
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Preload critical images
+  useEffect(() => {
+    const preloadImages = categories.slice(0, 3).map(category => {
+      const img = new Image();
+      img.src = category.image;
+      return img;
+    });
+  }, []);
+
   return (
-    <div className="page-container">
+    <div className="page-container" style={{
+      padding: windowWidth <= 768 ? '4px 8px' : '8px 16px'
+    }}>
       <Header lang={lang} setLang={setLang} />
-      
-      {/* Hero Section */}
-      <section className="hero-section" style={{
-        width: '100%',
-        maxWidth: 900,
-        margin: '0 auto',
-        padding: '48px 0 32px 0',
-        textAlign: 'center',
-        background: 'linear-gradient(90deg, #f5f7fa 60%, #e0c3fc 100%)',
-        borderRadius: 24,
-        boxShadow: '0 4px 32px rgba(102,126,234,0.07)',
-        marginBottom: 32
-      }}>
-        <h1 style={{ fontSize: '2.5em', fontWeight: 900, color: '#667eea', marginBottom: 12, letterSpacing: '-1px' }}>
-          FilMak Studio Poster Gallery
-        </h1>
-        <p style={{ fontSize: '1.2em', color: '#333', maxWidth: 600, margin: '0 auto' }}>
-          Welcome! Browse my custom-designed posters for weddings, baptisms, graduations, and more. Get inspired and contact me to order your own personalized print.
-        </p>
-        <div style={{ marginTop: 20 }}>
-          <Link to="/about" style={{ 
-            color: '#667eea', 
-            textDecoration: 'none', 
-            fontSize: '0.95em',
-            fontWeight: 500,
-            padding: '8px 16px',
-            borderRadius: 8,
-            border: '1px solid #667eea',
-            transition: 'all 0.2s',
-            display: 'inline-block'
-          }}>
-            Learn more about my work →
-          </Link>
-        </div>
-      </section>
 
       {/* Categories Grid */}
-      <section className="section-with-margin">
-        <div className="images-grid">
+      <section className="section-with-margin" style={{
+        margin: windowWidth <= 768 ? '6px 0 20px 0' : '10px 0 30px 0',
+        padding: windowWidth <= 768 ? '0 4px' : '0 8px'
+      }}>
+        <div className="images-grid" style={{
+          gap: windowWidth <= 480 ? '16px' : windowWidth <= 768 ? '12px' : '12px'
+        }}>
           {categories.map((category, index) => (
             <div key={category.id} className="image-container">
               <Link 
@@ -149,6 +136,8 @@ export default function HomePage() {
                   <img 
                     src={category.image} 
                     alt={`Example ${t[category.title]} poster`} 
+                    loading="lazy"
+                    decoding="async"
                   />
                   <div style={{
                     position: 'absolute',
@@ -157,20 +146,23 @@ export default function HomePage() {
                     right: 0,
                     background: 'linear-gradient(transparent, rgba(0,0,0,0.8))',
                     color: 'white',
-                    padding: '20px',
-                    textShadow: '0 2px 4px rgba(0,0,0,0.8)'
+                    padding: windowWidth <= 480 ? '8px' : '10px',
+                    textShadow: '0 1px 3px rgba(0,0,0,0.8)'
                   }}>
                     <div style={{ 
                       display: 'flex', 
                       alignItems: 'center', 
-                      marginBottom: '10px' 
+                      marginBottom: windowWidth <= 480 ? '3px' : '4px' 
                     }}>
-                      <span style={{ fontSize: '2em', marginRight: '12px' }}>
+                      <span style={{ 
+                        fontSize: windowWidth <= 480 ? '1.2em' : '1.4em', 
+                        marginRight: windowWidth <= 480 ? '6px' : '8px' 
+                      }}>
                         {category.icon}
                       </span>
                       <h3 style={{ 
-                        fontSize: '1.3em', 
-                        fontWeight: '700', 
+                        fontSize: windowWidth <= 480 ? '0.9em' : '1em', 
+                        fontWeight: '600', 
                         margin: 0,
                         color: 'white'
                       }}>
@@ -180,11 +172,11 @@ export default function HomePage() {
                     <div style={{ 
                       display: 'flex', 
                       alignItems: 'center',
-                      fontSize: '0.9em',
-                      fontWeight: '600'
+                      fontSize: windowWidth <= 480 ? '0.65em' : '0.7em',
+                      fontWeight: '500'
                     }}>
-                      Se exempel 
-                      <span style={{ marginLeft: '8px', fontSize: '1.1em' }}>→</span>
+                      See more examples 
+                      <span style={{ marginLeft: '4px', fontSize: '1em' }}>→</span>
                     </div>
                   </div>
                 </div>
@@ -194,20 +186,92 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section className="contact-section">
-        <div className="contact-box">
-          <div className="contact-label">
+      {/* Combined Hero & Contact Section */}
+      <section className="hero-section" style={{
+        width: '100%',
+        maxWidth: 700,
+        margin: '0 auto',
+        padding: windowWidth <= 768 ? '8px 0 6px 0' : '12px 0 10px 0',
+        textAlign: 'center',
+        background: 'linear-gradient(90deg, #f5f7fa 60%, #e0c3fc 100%)',
+        borderRadius: windowWidth <= 768 ? 8 : 12,
+        boxShadow: '0 1px 8px rgba(102,126,234,0.05)',
+        marginTop: windowWidth <= 768 ? 12 : 20
+      }}>
+        <h1 style={{ 
+          fontSize: windowWidth <= 480 ? '1.1em' : windowWidth <= 768 ? '1.3em' : '1.5em', 
+          fontWeight: 700, 
+          color: '#667eea', 
+          marginBottom: windowWidth <= 768 ? 3 : 4, 
+          letterSpacing: '-0.3px',
+          lineHeight: 1.1
+        }}>
+          FilMak Studio Poster Gallery
+        </h1>
+        <p style={{ 
+          fontSize: windowWidth <= 480 ? '0.7em' : '0.8em', 
+          color: '#333', 
+          maxWidth: 450, 
+          margin: '0 auto',
+          padding: windowWidth <= 768 ? '0 8px' : '0',
+          lineHeight: 1.3,
+          opacity: 0.9,
+          marginBottom: windowWidth <= 768 ? 6 : 8
+        }}>
+          Welcome! Browse my custom-designed posters for weddings, baptisms, graduations, and more. Get inspired and contact me to order your own personalized print.
+        </p>
+        
+        {/* Contact Info */}
+        <div style={{
+          background: 'rgba(255, 255, 255, 0.3)',
+          borderRadius: windowWidth <= 768 ? 6 : 8,
+          padding: windowWidth <= 768 ? '6px 8px' : '8px 12px',
+          marginBottom: windowWidth <= 768 ? 6 : 8,
+          border: '1px solid rgba(102,126,234,0.2)'
+        }}>
+          <div style={{
+            fontSize: windowWidth <= 480 ? '0.7em' : '0.75em',
+            color: '#667eea',
+            fontWeight: 600,
+            marginBottom: windowWidth <= 768 ? 2 : 3
+          }}>
             Contact me
           </div>
-          <div className="contact-phone">
-            <a href="tel:+467000395606" aria-label="Call +46 70 003 95 606">+46 70 003 95 606</a>
+          <div style={{
+            fontSize: windowWidth <= 480 ? '0.85em' : '0.9em',
+            color: '#333',
+            fontWeight: 500
+          }}>
+            <a href="tel:+467000395606" aria-label="Call +46 70 003 95 606" style={{
+              color: '#667eea',
+              textDecoration: 'none',
+              fontWeight: 600
+            }}>+46 70 003 95 606</a>
           </div>
+        </div>
+
+        <div style={{ marginTop: windowWidth <= 768 ? 4 : 6 }}>
+          <Link to="/about" style={{ 
+            color: '#667eea', 
+            textDecoration: 'none', 
+            fontSize: windowWidth <= 480 ? '0.65em' : '0.7em',
+            fontWeight: 500,
+            padding: windowWidth <= 768 ? '2px 6px' : '3px 8px',
+            borderRadius: 4,
+            border: '1px solid #667eea',
+            transition: 'all 0.2s',
+            display: 'inline-block'
+          }}>
+            Learn more about my work →
+          </Link>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="footer" role="contentinfo">
+      <footer className="footer" role="contentinfo" style={{
+        padding: windowWidth <= 768 ? '6px 0 3px 0' : '8px 0 4px 0',
+        fontSize: windowWidth <= 480 ? '0.65em' : '0.7em'
+      }}>
         <span>&copy; {new Date().getFullYear()} FilMak Studio. All rights reserved.</span>
         <a
           href="https://instagram.com/"
@@ -215,11 +279,11 @@ export default function HomePage() {
           rel="noopener noreferrer"
           aria-label="Instagram"
           className="footer-instagram-link"
-          style={{ marginLeft: 16, verticalAlign: 'middle', display: 'inline-block' }}
+          style={{ marginLeft: 8, verticalAlign: 'middle', display: 'inline-block' }}
         >
           <svg
-            width="22"
-            height="22"
+            width="16"
+            height="16"
             viewBox="0 0 24 24"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -230,7 +294,7 @@ export default function HomePage() {
             <circle cx="17" cy="7" r="1.2" fill="#fff"/>
           </svg>
         </a>
-      </footer>
+      </footer>      
     </div>
   );
-} 
+}
