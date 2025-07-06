@@ -1,15 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header.jsx';
+import FastImage from '../components/FastImage.jsx';
 import { useSwipeGesture } from '../hooks/useSwipeGesture.js';
 import '../styles/birthday.css';
-import florence from '../assets/florence.jpg';
-import florence2 from '../assets/florence2.jpg';
-import gozo from '../assets/Gozo.webp';
-import rose from '../assets/rose.jpg';
-import img1 from '../assets/61647459de00cb906f4996e6006e73a0.jpg';
-import girlBirthday from '../assets/birthday/girl birthday (1).png';
-import boyBirthday from '../assets/birthday/boy birthday.png';
+import girlBirthday from '../assets/birthday/girl birthday.webp';
+import boyBirthday from '../assets/birthday/boy birthday.webp';
 
 const translations = {
   sv: {
@@ -21,7 +17,7 @@ const translations = {
     backToHome: '← Back to homepage',
   },
   ti: {
-    title: 'ልደት/በርዝደይ',
+    title: 'ልደት',
     backToHome: '← ናብ መጀመርታ ተመለስ',
   },
 };
@@ -30,7 +26,6 @@ const examples = [];
 
 // Function to get CSS class based on size
 const getSizeClass = (size) => {
-  if (size === 'A3 (30 x 42 cm)') return 'birthday-poster-a3';
   if (size === 'A2 (42 x 59 cm)') return 'birthday-poster-a2';
   if (size === 'A1 (59 x 84 cm)') return 'birthday-poster-a1';
   if (size === 'A4 (21 x 30 cm)') return 'birthday-poster-a4';
@@ -42,7 +37,6 @@ export default function BirthdayPosters() {
   const t = translations[lang];
   const [imgModal, setImgModal] = useState(null);
   const modalRef = useRef(null);
-  const [loadedImages, setLoadedImages] = useState(new Set());
 
   const featuredImages = [
     { src: girlBirthday, title: 'Födelsedagsposter - Flicka', size: '100 x 60 cm' },
@@ -63,11 +57,6 @@ export default function BirthdayPosters() {
   };
 
   useSwipeGesture(handleSwipeLeft, handleSwipeRight);
-
-  // Handle image loading
-  const handleImageLoad = (index) => {
-    setLoadedImages(prev => new Set(prev).add(index));
-  };
 
   // Trap focus inside modal and handle keyboard navigation
   useEffect(() => {
@@ -125,9 +114,11 @@ export default function BirthdayPosters() {
             aria-label={`Enlarge featured birthday poster ${idx+1}`}
             style={{ cursor: 'pointer', maxWidth: '45%', width: 'auto', background: 'none', boxShadow: 'none', border: 'none' }}
           >
-            <img 
+            <FastImage 
               src={img.src} 
               alt={img.title}
+              loading={idx < 2 ? "eager" : "lazy"}
+              priority={idx < 2}
               style={{
                 maxWidth: '100%',
                 maxHeight: '320px',
@@ -145,8 +136,6 @@ export default function BirthdayPosters() {
           </div>
         ))}
       </div>
-
-
 
       {/* Image Modal */}
       {imgModal !== null && (

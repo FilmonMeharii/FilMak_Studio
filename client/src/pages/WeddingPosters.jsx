@@ -1,16 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header.jsx';
+import FastImage from '../components/FastImage.jsx';
 import { useSwipeGesture } from '../hooks/useSwipeGesture.js';
 import '../styles/wedding.css';
-import florence from '../assets/florence.jpg';
-import florence2 from '../assets/florence2.jpg';
-import gozo from '../assets/Gozo.webp';
-import rose from '../assets/rose.jpg';
-import img1 from '../assets/61647459de00cb906f4996e6006e73a0.jpg';
-import whitePoster from '../assets/wedding/white poster.png';
-import colorPoster from '../assets/wedding/color poster.png';
-import blackColored from '../assets/wedding/black colored.png';
+import whitePoster from '../assets/wedding/white poster.webp';
+import colorPoster from '../assets/wedding/color poster.webp';
+import blackColored from '../assets/wedding/black colored.webp';
 
 const translations = {
   sv: {
@@ -22,25 +18,25 @@ const translations = {
     backToHome: '← Back to homepage',
   },
   ti: {
-    title: 'ብዓል',
+    title: 'ጋብቻ',
     backToHome: '← ናብ መጀመርታ ተመለስ',
   },
 };
 
 const examples = [
-  { src: whitePoster, title: 'Bröllopsposter - Vit Rollup', size: 'Vit Rollup (85 x 200 cm)' },
-  { src: colorPoster, title: 'Bröllopsposter - Färgad Rollup', size: 'Färgad Rollup (85 x 200 cm)' },
-  { src: blackColored, title: 'Bröllopsposter - Svart Färgad Rollup', size: 'Svart Färgad Rollup (85 x 200 cm)' }
+  { src: whitePoster, title: 'Bröllopsposter - Vit', size: '85 x 200 cm' },
+  { src: colorPoster, title: 'Bröllopsposter - Färgad', size: '85 x 200 cm' },
+  { src: blackColored, title: 'Bröllopsposter - Svart färgad', size: '85 x 200 cm' }
 ];
 
 // Function to get CSS class based on size
 const getSizeClass = (size) => {
   if (size === 'A2 (42 x 59 cm)') return 'wedding-poster-a2';
   if (size === 'A1 (59 x 84 cm)') return 'wedding-poster-a1';
-  if (size === 'A0 (84 x 119 cm)') return 'wedding-poster-a0';
   if (size === 'A3 (30 x 42 cm)') return 'wedding-poster-a3';
-  if (size === 'Rollup (85 x 200 cm)' || size === 'Vit Rollup (85 x 200 cm)' || size === 'Färgad Rollup (85 x 200 cm)' || size === 'Svart Färgad Rollup (85 x 200 cm)') return 'wedding-poster-rollup';
-  return 'wedding-poster-a2'; // default
+  if (size === 'A4 (21 x 30 cm)') return 'wedding-poster-a4';
+  if (size === '85 x 200 cm') return 'wedding-poster-rollup';
+  return 'wedding-poster-rollup'; // default for rollup sizes
 };
 
 export default function WeddingPosters() {
@@ -48,7 +44,6 @@ export default function WeddingPosters() {
   const t = translations[lang];
   const [imgModal, setImgModal] = useState(null);
   const modalRef = useRef(null);
-  const [loadedImages, setLoadedImages] = useState(new Set());
 
   // Swipe gestures for mobile
   const handleSwipeLeft = () => {
@@ -64,21 +59,6 @@ export default function WeddingPosters() {
   };
 
   useSwipeGesture(handleSwipeLeft, handleSwipeRight);
-
-  // Handle image loading
-  const handleImageLoad = (index) => {
-    setLoadedImages(prev => new Set(prev).add(index));
-  };
-
-  // Preload critical images (first 6)
-  useEffect(() => {
-    const preloadImages = examples.slice(0, 6).map((ex, index) => {
-      const img = new Image();
-      img.src = ex.src;
-      img.onload = () => handleImageLoad(index);
-      return img;
-    });
-  }, []);
 
   // Trap focus inside modal and handle keyboard navigation
   useEffect(() => {
@@ -124,39 +104,23 @@ export default function WeddingPosters() {
         </Link>
       </div>
 
-      {/* Images Grid */}
+      {/* Wedding Images Grid */}
       <section className="section-with-margin">
-        <div className="wedding-images-grid" style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center', gap: '24px', width: '100%', padding: '0 24px' }}>
+        <div className="wedding-images-grid">
           {examples.map((ex, i) => (
-            <div key={i} className="wedding-image-container" style={{ maxWidth: '30%', width: 'auto' }}>
+            <div key={i} className="wedding-image-container">
               <div
                 className={`wedding-image-card ${getSizeClass(ex.size)}`}
                 onClick={() => setImgModal(i)}
                 title="Klicka för att förstora"
                 tabIndex={0}
                 aria-label={`Enlarge example wedding poster ${i+1}`}
-                style={{ background: 'none', boxShadow: 'none', border: 'none' }}
               >
-                {!loadedImages.has(i) && (
-                  <div 
-                    className="image-loading" 
-                    style={{ 
-                      width: '100%', 
-                      height: '100%', 
-                      position: 'absolute',
-                      top: 0,
-                      left: 0,
-                      zIndex: 1
-                    }}
-                  />
-                )}
-                <img 
+                <FastImage 
                   src={ex.src} 
                   alt={`Example wedding poster ${i+1}`} 
-                  loading={i < 6 ? "eager" : "lazy"}
-                  className={`image-fade-in ${loadedImages.has(i) ? 'loaded' : ''}`}
-                  onLoad={() => handleImageLoad(i)}
-                  style={{ position: 'relative', zIndex: 2 }}
+                  loading={i < 3 ? "eager" : "lazy"}
+                  priority={i < 3}
                   decoding="async"
                   width="300"
                   height="400"
@@ -198,7 +162,7 @@ export default function WeddingPosters() {
           >
             <img
               src={examples[imgModal].src}
-              alt={`Enlarged example wedding poster ${imgModal + 1}`}
+              alt={`Enlarged ${examples[imgModal].title}`}
               className="modal-image"
               loading="lazy"
               style={{ transition: 'opacity 0.3s' }}

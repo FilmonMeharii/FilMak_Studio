@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header.jsx';
-import florence from '../assets/florence.jpg';
-import florence2 from '../assets/florence2.jpg';
-import gozo from '../assets/Gozo.webp';
-import rose from '../assets/dop/dop (100 x 60 cm).png';
-import img1 from '../assets/61647459de00cb906f4996e6006e73a0.jpg';
-import whitePoster from '../assets/wedding/white poster.png';
-import girlBirthday from '../assets/birthday/girl birthday (1).png';
-import girlStudenten from '../assets/graduation/girl studenten.png';
+import florence from '../assets/inspiration/eti zmkah.webp';
+import gozo from '../assets/exam/gozo.webp';
+import rose from '../assets/dop/dop girl.webp';
+import img1 from '../assets/inspiration/10 tiezazat.webp';
+import whitePoster from '../assets/wedding/white poster.webp';
+import girlBirthday from '../assets/birthday/girl birthday.webp';
+import girlStudenten from '../assets/graduation/girl studenten.webp';
 
 const translations = {
   sv: {
@@ -72,9 +71,9 @@ const categories = [
   {
     id: 'exam',
     title: 'exam',
-    image: florence2,
+    image: gozo,
     icon: '📜',
-    sizes: ['60 x 200 cm', '50 x 150 cm']
+    sizes: ['A2 (42 x 59 cm)', 'A1 (59 x 84 cm)', 'A3 (30 x 42 cm)', 'A4 (21 x 30 cm)', 'A0 (84 x 119 cm)']
   },
   {
     id: 'inspiration',
@@ -96,6 +95,25 @@ const getAspectRatio = (sizeStr) => {
   return 100; // Default square if no match
 };
 
+// Ultra-lightweight image component for maximum performance
+const FastImage = ({ src, alt, loading = "lazy", priority = false, ...props }) => {
+  return (
+    <img 
+      src={src} 
+      alt={alt}
+      loading={priority ? "eager" : loading}
+      decoding="async"
+      style={{ 
+        width: '100%', 
+        height: '100%', 
+        objectFit: 'cover',
+        ...props.style
+      }}
+      {...props}
+    />
+  );
+};
+
 export default function HomePage({ lang, setLang }) {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const t = translations[lang];
@@ -104,15 +122,6 @@ export default function HomePage({ lang, setLang }) {
     const handleResize = () => setWindowWidth(window.innerWidth);
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  // Preload critical images
-  useEffect(() => {
-    const preloadImages = categories.slice(0, 3).map(category => {
-      const img = new Image();
-      img.src = category.image;
-      return img;
-    });
   }, []);
 
   return (
@@ -136,11 +145,11 @@ export default function HomePage({ lang, setLang }) {
                 style={{ textDecoration: 'none', color: 'inherit' }}
               >
                 <div className="image-card" style={{ position: 'relative' }} tabIndex={0} aria-label={`See example posters for ${t[category.title]}`}>
-                  <img 
+                  <FastImage 
                     src={category.image} 
                     alt={`Example ${t[category.title]} poster`} 
-                    loading="lazy"
-                    decoding="async"
+                    loading={index < 2 ? "eager" : "lazy"}
+                    priority={index < 2}
                   />
                   <div style={{
                     position: 'absolute',
@@ -153,34 +162,13 @@ export default function HomePage({ lang, setLang }) {
                     textShadow: '0 1px 3px rgba(0,0,0,0.8)'
                   }}>
                     <div style={{ 
-                      display: 'flex', 
-                      alignItems: 'center', 
-                      marginBottom: windowWidth <= 480 ? '3px' : '4px' 
+                      fontSize: windowWidth <= 480 ? '1.1em' : '1.3em', 
+                      fontWeight: '600',
+                      marginBottom: '4px'
                     }}>
-                      <span style={{ 
-                        fontSize: windowWidth <= 480 ? '1.2em' : '1.4em', 
-                        marginRight: windowWidth <= 480 ? '6px' : '8px' 
-                      }}>
-                        {category.icon}
-                      </span>
-                      <h3 style={{ 
-                        fontSize: windowWidth <= 480 ? '0.9em' : '1em', 
-                        fontWeight: '600', 
-                        margin: 0,
-                        color: 'white'
-                      }}>
-                        {t[category.title]}
-                      </h3>
+                      {category.icon} {t[category.title]}
                     </div>
-                    <div style={{ 
-                      display: 'flex', 
-                      alignItems: 'center',
-                      fontSize: windowWidth <= 480 ? '0.65em' : '0.7em',
-                      fontWeight: '500'
-                    }}>
-                      See more examples 
-                      <span style={{ marginLeft: '4px', fontSize: '1em' }}>→</span>
-                    </div>
+
                   </div>
                 </div>
               </Link>
@@ -189,92 +177,26 @@ export default function HomePage({ lang, setLang }) {
         </div>
       </section>
 
-      {/* Combined Hero & Contact Section */}
-      <section className="hero-section" style={{
-        width: '100%',
-        maxWidth: 700,
-        margin: '0 auto',
-        padding: windowWidth <= 768 ? '8px 0 6px 0' : '12px 0 10px 0',
+      {/* Contact Info */}
+      <section className="section" style={{
         textAlign: 'center',
-        background: 'linear-gradient(90deg, #f5f7fa 60%, #e0c3fc 100%)',
-        borderRadius: windowWidth <= 768 ? 8 : 12,
-        boxShadow: '0 1px 8px rgba(102,126,234,0.05)',
-        marginTop: windowWidth <= 768 ? 12 : 20
+        padding: windowWidth <= 768 ? '20px 16px' : '30px 24px',
+        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+        borderRadius: '16px',
+        margin: windowWidth <= 768 ? '20px 8px' : '30px 16px',
+        color: 'white',
+        boxShadow: '0 8px 32px rgba(102,126,234,0.3)'
       }}>
-        <h1 style={{ 
-          fontSize: windowWidth <= 480 ? '1.1em' : windowWidth <= 768 ? '1.3em' : '1.5em', 
-          fontWeight: 700, 
-          color: '#667eea', 
-          marginBottom: windowWidth <= 768 ? 3 : 4, 
-          letterSpacing: '-0.3px',
-          lineHeight: 1.1
-        }}>
-          FilMak Studio Poster Gallery
-        </h1>
         <p style={{ 
-          fontSize: windowWidth <= 480 ? '0.7em' : '0.8em', 
-          color: '#333', 
-          maxWidth: 450, 
-          margin: '0 auto',
-          padding: windowWidth <= 768 ? '0 8px' : '0',
-          lineHeight: 1.3,
-          opacity: 0.9,
-          marginBottom: windowWidth <= 768 ? 6 : 8
+          fontSize: windowWidth <= 480 ? '1em' : '1.1em',
+          margin: 0,
+          lineHeight: 1.5
         }}>
-          Welcome! Browse my custom-designed posters for weddings, baptisms, graduations, and more. Get inspired and contact me to order your own personalized print.
+          {t.contactInfo}
         </p>
-        
-        {/* Contact Info */}
-        <div style={{
-          background: 'rgba(255, 255, 255, 0.3)',
-          borderRadius: windowWidth <= 768 ? 6 : 8,
-          padding: windowWidth <= 768 ? '6px 8px' : '8px 12px',
-          marginBottom: windowWidth <= 768 ? 6 : 8,
-          border: '1px solid rgba(102,126,234,0.2)'
-        }}>
-          <div style={{
-            fontSize: windowWidth <= 480 ? '0.7em' : '0.75em',
-            color: '#667eea',
-            fontWeight: 600,
-            marginBottom: windowWidth <= 768 ? 2 : 3
-          }}>
-            Contact me
-          </div>
-          <div style={{
-            fontSize: windowWidth <= 480 ? '0.85em' : '0.9em',
-            color: '#333',
-            fontWeight: 500
-          }}>
-            <a href="tel:+467000395606" aria-label="Call +46 70 003 95 606" style={{
-              color: '#667eea',
-              textDecoration: 'none',
-              fontWeight: 600
-            }}>+46 70 003 95 606</a>
-          </div>
-        </div>
-
-        <div style={{ marginTop: windowWidth <= 768 ? 4 : 6 }}>
-          <Link to="/about" style={{ 
-            color: '#667eea', 
-            textDecoration: 'none', 
-            fontSize: windowWidth <= 480 ? '0.65em' : '0.7em',
-            fontWeight: 500,
-            padding: windowWidth <= 768 ? '2px 6px' : '3px 8px',
-            borderRadius: 4,
-            border: '1px solid #667eea',
-            transition: 'all 0.2s',
-            display: 'inline-block'
-          }}>
-            Learn more about my work →
-          </Link>
-        </div>
       </section>
 
-      {/* Footer */}
-      <footer className="footer" role="contentinfo" style={{
-        padding: windowWidth <= 768 ? '6px 0 3px 0' : '8px 0 4px 0',
-        fontSize: windowWidth <= 480 ? '0.65em' : '0.7em'
-      }}>
+      <footer className="footer" role="contentinfo">
         <span>&copy; {new Date().getFullYear()} FilMak Studio. All rights reserved.</span>
         <a
           href="https://instagram.com/"
@@ -282,11 +204,11 @@ export default function HomePage({ lang, setLang }) {
           rel="noopener noreferrer"
           aria-label="Instagram"
           className="footer-instagram-link"
-          style={{ marginLeft: 8, verticalAlign: 'middle', display: 'inline-block' }}
+          style={{ marginLeft: 16, verticalAlign: 'middle', display: 'inline-block' }}
         >
           <svg
-            width="16"
-            height="16"
+            width="22"
+            height="22"
             viewBox="0 0 24 24"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -297,7 +219,7 @@ export default function HomePage({ lang, setLang }) {
             <circle cx="17" cy="7" r="1.2" fill="#fff"/>
           </svg>
         </a>
-      </footer>      
+      </footer>
     </div>
   );
 }

@@ -1,19 +1,15 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header.jsx';
+import FastImage from '../components/FastImage.jsx';
 import { useSwipeGesture } from '../hooks/useSwipeGesture.js';
 import '../styles/graduation.css';
-import florence from '../assets/florence.jpg';
-import florence2 from '../assets/florence2.jpg';
-import gozo from '../assets/Gozo.webp';
-import rose from '../assets/rose.jpg';
-import img1 from '../assets/61647459de00cb906f4996e6006e73a0.jpg';
-import girlStudenten from '../assets/graduation/girl studenten.png';
-import boyStudenten from '../assets/graduation/boy studenten.png';
+import girlStudenten from '../assets/graduation/girl studenten.webp';
+import boyStudenten from '../assets/graduation/boy studenten.webp';
 
 const translations = {
   sv: {
-    title: 'Student',
+    title: 'Studenten',
     backToHome: '← Tillbaka till startsidan',
   },
   en: {
@@ -21,7 +17,7 @@ const translations = {
     backToHome: '← Back to homepage',
   },
   ti: {
-    title: 'መመረቅታ',
+    title: 'ስቱደንተን',
     backToHome: '← ናብ መጀመርታ ተመለስ',
   },
 };
@@ -33,11 +29,11 @@ const examples = [
 
 // Function to get CSS class based on size
 const getSizeClass = (size) => {
-  if (size === 'A0 (84 x 119 cm)') return 'graduation-poster-a0';
-  if (size === 'A1 (59 x 84 cm)') return 'graduation-poster-a1';
   if (size === 'A2 (42 x 59 cm)') return 'graduation-poster-a2';
+  if (size === 'A1 (59 x 84 cm)') return 'graduation-poster-a1';
   if (size === 'A3 (30 x 42 cm)') return 'graduation-poster-a3';
-  return 'graduation-poster-a1'; // default
+  if (size === 'A4 (21 x 30 cm)') return 'graduation-poster-a4';
+  return 'graduation-poster-a3'; // default
 };
 
 export default function GraduationPosters() {
@@ -45,7 +41,6 @@ export default function GraduationPosters() {
   const t = translations[lang];
   const [imgModal, setImgModal] = useState(null);
   const modalRef = useRef(null);
-  const [loadedImages, setLoadedImages] = useState(new Set());
 
   // Swipe gestures for mobile
   const handleSwipeLeft = () => {
@@ -61,11 +56,6 @@ export default function GraduationPosters() {
   };
 
   useSwipeGesture(handleSwipeLeft, handleSwipeRight);
-
-  // Handle image loading
-  const handleImageLoad = (index) => {
-    setLoadedImages(prev => new Set(prev).add(index));
-  };
 
   // Trap focus inside modal and handle keyboard navigation
   useEffect(() => {
@@ -111,39 +101,26 @@ export default function GraduationPosters() {
         </Link>
       </div>
 
-      {/* Images Grid */}
+      {/* Graduation Images Grid */}
       <section className="section-with-margin">
-        <div className="graduation-images-grid" style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center', gap: '24px', width: '100%', padding: '0 24px' }}>
+        <div className="graduation-images-grid">
           {examples.map((ex, i) => (
-            <div key={i} className="graduation-image-container" style={{ maxWidth: '45%', width: 'auto' }}>
+            <div key={i} className="graduation-image-container">
               <div
                 className={`graduation-image-card ${getSizeClass(ex.size)}`}
                 onClick={() => setImgModal(i)}
                 title="Klicka för att förstora"
                 tabIndex={0}
                 aria-label={`Enlarge example graduation poster ${i+1}`}
-                style={{ background: 'none', boxShadow: 'none', border: 'none' }}
               >
-                {!loadedImages.has(i) && (
-                  <div 
-                    className="image-loading" 
-                    style={{ 
-                      width: '100%', 
-                      height: '100%', 
-                      position: 'absolute',
-                      top: 0,
-                      left: 0,
-                      zIndex: 1
-                    }}
-                  />
-                )}
-                <img 
+                <FastImage 
                   src={ex.src} 
                   alt={`Example graduation poster ${i+1}`} 
-                  loading="lazy"
-                  className={`image-fade-in ${loadedImages.has(i) ? 'loaded' : ''}`}
-                  onLoad={() => handleImageLoad(i)}
-                  style={{ position: 'relative', zIndex: 2 }}
+                  loading={i < 2 ? "eager" : "lazy"}
+                  priority={i < 2}
+                  decoding="async"
+                  width="300"
+                  height="400"
                 />
               </div>
               <div style={{ 
@@ -182,7 +159,7 @@ export default function GraduationPosters() {
           >
             <img
               src={examples[imgModal].src}
-              alt={`Enlarged example graduation poster ${imgModal + 1}`}
+              alt={`Enlarged ${examples[imgModal].title}`}
               className="modal-image"
               loading="lazy"
               style={{ transition: 'opacity 0.3s' }}

@@ -10,8 +10,11 @@ img {
   max-width: 100%;
   height: auto;
   will-change: transform;
+  backface-visibility: hidden;
+  transform: translateZ(0);
 }
 
+/* Optimize animations for GPU */
 .image-card,
 .inspiration-image-card {
   will-change: transform;
@@ -776,8 +779,8 @@ button:focus, .nav-link:focus, .image-card:focus, .category-card:focus, .modal-c
 }
 
 @keyframes loading {
-  0% { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
 }
 
 .image-fade-in {

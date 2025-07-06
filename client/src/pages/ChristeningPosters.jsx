@@ -1,11 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header.jsx';
+import FastImage from '../components/FastImage.jsx';
 import { useSwipeGesture } from '../hooks/useSwipeGesture.js';
 import '../styles/christening.css';
-import dop from '../assets/dop/dop.png';
-import dop100x60 from '../assets/dop/dop (100 x 60 cm).png';
-import dopBoy100x60 from '../assets/dop/dop boy (100 x 60 cm) (2).png';
+import rose from '../assets/dop/dop girl.webp';
+import dopBoy from '../assets/dop/dop boy.webp';
 
 const translations = {
   sv: {
@@ -22,15 +22,17 @@ const translations = {
   },
 };
 
-const examples = [];
+const featuredImages = [
+  { src: rose, title: 'Dopsposter - Rosa', size: '100 x 60 cm' },
+  { src: dopBoy, title: 'Dopsposter - Pojke', size: '100 x 60 cm' }
+];
 
 // Function to get CSS class based on size
 const getSizeClass = (size) => {
-  if (size === 'A3 (30 x 42 cm)') return 'christening-poster-a3';
   if (size === 'A2 (42 x 59 cm)') return 'christening-poster-a2';
   if (size === 'A1 (59 x 84 cm)') return 'christening-poster-a1';
-  if (size === 'Rollup (85 x 200 cm)') return 'christening-poster-rollup';
-  if (size === 'Custom (100 x 250 cm)') return 'christening-poster-custom';
+  if (size === 'A3 (30 x 42 cm)') return 'christening-poster-a3';
+  if (size === 'A4 (21 x 30 cm)') return 'christening-poster-a4';
   return 'christening-poster-a3'; // default
 };
 
@@ -39,12 +41,6 @@ export default function ChristeningPosters() {
   const t = translations[lang];
   const [imgModal, setImgModal] = useState(null);
   const modalRef = useRef(null);
-  const [loadedImages, setLoadedImages] = useState(new Set());
-
-  const featuredImages = [
-    { src: dop100x60, title: 'Dop poster 100x60cm', size: '100 x 60 cm' },
-    { src: dopBoy100x60, title: 'Dop Boy poster 100x60cm', size: '100 x 60 cm' }
-  ];
 
   // Swipe gestures for mobile
   const handleSwipeLeft = () => {
@@ -60,11 +56,6 @@ export default function ChristeningPosters() {
   };
 
   useSwipeGesture(handleSwipeLeft, handleSwipeRight);
-
-  // Handle image loading
-  const handleImageLoad = (index) => {
-    setLoadedImages(prev => new Set(prev).add(index));
-  };
 
   // Trap focus inside modal and handle keyboard navigation
   useEffect(() => {
@@ -102,6 +93,7 @@ export default function ChristeningPosters() {
   return (
     <div className="page-container">
       <Header lang={lang} setLang={setLang} />
+      
       {/* Back to home */}
       <div className="section">
         <Link to="/" className="back-link">
@@ -109,7 +101,7 @@ export default function ChristeningPosters() {
         </Link>
       </div>
 
-      {/* Featured dop images at the top of the grid, both clickable */}
+      {/* Featured christening images at the top of the grid, both clickable */}
       <div className="dop-featured-image-container" style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center', gap: '24px', margin: '24px 0 8px 0', width: '100%', padding: '0 24px' }}>
         {featuredImages.map((img, idx) => (
           <div
@@ -121,9 +113,11 @@ export default function ChristeningPosters() {
             aria-label={`Enlarge featured christening poster ${idx+1}`}
             style={{ cursor: 'pointer', maxWidth: '45%', width: 'auto', background: 'none', boxShadow: 'none', border: 'none' }}
           >
-            <img 
+            <FastImage 
               src={img.src} 
               alt={img.title}
+              loading={idx < 2 ? "eager" : "lazy"}
+              priority={idx < 2}
               style={{
                 maxWidth: '100%',
                 maxHeight: '320px',
@@ -141,8 +135,6 @@ export default function ChristeningPosters() {
           </div>
         ))}
       </div>
-
-
 
       {/* Image Modal */}
       {imgModal !== null && (
@@ -165,15 +157,15 @@ export default function ChristeningPosters() {
               opacity: 1
             }}
           >
-            <img 
-              src={imgModal < 0 ? featuredImages[-1 - imgModal].src : examples[imgModal].src} 
-              alt={imgModal < 0 ? featuredImages[-1 - imgModal].title : `Enlarged example christening poster ${imgModal + 1}`}
+            <img
+              src={imgModal < 0 ? featuredImages[Math.abs(imgModal) - 1].src : examples[imgModal].src}
+              alt={imgModal < 0 ? `Enlarged ${featuredImages[Math.abs(imgModal) - 1].title}` : `Enlarged example christening poster ${imgModal + 1}`}
               className="modal-image"
               loading="lazy"
               style={{ transition: 'opacity 0.3s' }}
             />
-            <button 
-              onClick={() => setImgModal(null)} 
+            <button
+              onClick={() => setImgModal(null)}
               className="modal-close"
               aria-label="Close modal"
               autoFocus

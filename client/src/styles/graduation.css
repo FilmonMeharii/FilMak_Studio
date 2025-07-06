@@ -35,10 +35,10 @@
 }
 
 /* Specific poster sizes for graduation - responsive dimensions */
-.graduation-poster-a1 { width: 45%; aspect-ratio: 59/84; height: auto; margin: 0 auto; display: block; }
-.graduation-poster-a2 { width: 40%; aspect-ratio: 42/59; height: auto; margin: 0 auto; display: block; }
-.graduation-poster-a3 { width: 35%; aspect-ratio: 30/42; height: auto; margin: 0 auto; display: block; }
-.graduation-poster-a4 { width: 30%; aspect-ratio: 21/30; height: auto; margin: 0 auto; display: block; }
+.graduation-poster-a1 { width: 80%; aspect-ratio: 59/84; height: auto; margin: 0 auto; display: block; }
+.graduation-poster-a2 { width: 75%; aspect-ratio: 42/59; height: auto; margin: 0 auto; display: block; }
+.graduation-poster-a3 { width: 70%; aspect-ratio: 30/42; height: auto; margin: 0 auto; display: block; }
+.graduation-poster-a4 { width: 65%; aspect-ratio: 21/30; height: auto; margin: 0 auto; display: block; }
 
 /* Responsive */
 @media (max-width: 1024px) {

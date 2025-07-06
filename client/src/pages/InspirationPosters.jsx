@@ -1,15 +1,14 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header.jsx';
+import FastImage from '../components/FastImage.jsx';
 import { useSwipeGesture } from '../hooks/useSwipeGesture.js';
 import '../styles/inspiration.css';
-import tiezazat10 from '../assets/inspiration/10 tiezazat.png';
-import tiezazat10_2 from '../assets/inspiration/10 tiezazat 2.png';
-import etiZmkah from '../assets/inspiration/eti zmkah.png';
-import gerkaleyIkaEmo from '../assets/inspiration/gerkaley ika emo.png';
-import nabBetEgziabiher from '../assets/inspiration/nab bet egziabiher.jpg';
-import OAmlakey from '../assets/inspiration/O Amlakey.png';
-import xruyLbiFtereley from '../assets/inspiration/xruy lbi ftereley .jpg';
+import florence from '../assets/inspiration/O Amlakey.webp';
+import florence2 from '../assets/inspiration/eti zmkah.webp';
+import gozo from '../assets/exam/gozo.webp';
+import rose from '../assets/inspiration/10 tiezazat.webp';
+import img1 from '../assets/inspiration/nab bet egziabiher.webp';
 
 const translations = {
   sv: {
@@ -27,53 +26,28 @@ const translations = {
 };
 
 const examples = [
-  { src: tiezazat10_2, title: '10 tiezazat 2 - 1', size: '10 x 15 cm' },
-  { src: tiezazat10_2, title: '10 tiezazat 2 - 2', size: '15 x 30 cm' },
-  { src: tiezazat10_2, title: '10 tiezazat 2 - 3', size: '20 x 30 cm' },
-  { src: etiZmkah, title: 'eti zmkah 1', size: '20 x 10 cm' },
-  { src: etiZmkah, title: 'eti zmkah 2', size: '15 x 10 cm' },
-  { src: etiZmkah, title: 'eti zmkah 3', size: '30 x 20 cm' },
-  { src: gerkaleyIkaEmo, title: 'gerkaley ika emo 1', size: '10 x 15 cm' },
-  { src: gerkaleyIkaEmo, title: 'gerkaley ika emo 2', size: '15 x 20 cm' },
-  { src: gerkaleyIkaEmo, title: 'gerkaley ika emo 3', size: '20 x 30 cm' },
-  { src: nabBetEgziabiher, title: 'nab bet egziabiher 1', size: '20 x 10 cm' },
-  { src: nabBetEgziabiher, title: 'nab bet egziabiher 2', size: '40 x 25 cm' },
-  { src: nabBetEgziabiher, title: 'nab bet egziabiher 3', size: '30 x 20 cm' },
-  { src: OAmlakey, title: 'O Amlakey 1', size: '15 x 20 cm' },
-  { src: OAmlakey, title: 'O Amlakey 2', size: '20 x 30 cm' },
-  { src: OAmlakey, title: 'O Amlakey 3', size: '30 x 40 cm' },
-  { src: tiezazat10, title: '10 tiezazat 1', size: '10 x 15 cm' },
-  { src: tiezazat10, title: '10 tiezazat 2', size: '15 x 20 cm' },
-  { src: tiezazat10, title: '10 tiezazat 3', size: '20 x 30 cm' },
-  { src: xruyLbiFtereley, title: 'xruy lbi ftereley 1', size: '15 x 10 cm' },
-  { src: xruyLbiFtereley, title: 'xruy lbi ftereley 2', size: '15 x 15 cm' },
-  { src: xruyLbiFtereley, title: 'xruy lbi ftereley 3', size: '30 x 20 cm' }
+  { src: florence, title: 'Inspirationsposter - Florence', size: 'A2 (42 x 59 cm)' },
+  { src: florence2, title: 'Inspirationsposter - Florence 2', size: 'A1 (59 x 84 cm)' },
+  { src: gozo, title: 'Inspirationsposter - Gozo', size: 'A3 (30 x 42 cm)' },
+  { src: rose, title: 'Inspirationsposter - Rose', size: 'A4 (21 x 30 cm)' },
+  { src: img1, title: 'Inspirationsposter - Image 1', size: 'A2 (42 x 59 cm)' },
+  { src: florence, title: 'Inspirationsposter - Florence 3', size: 'A1 (59 x 84 cm)' }
 ];
 
 // Function to get CSS class based on size
 const getSizeClass = (size) => {
-  if (size === '10 x 15 cm') return 'inspiration-poster-10x15';
-  if (size === '15 x 10 cm') return 'inspiration-poster-15x10';
-  if (size === '15 x 15 cm') return 'inspiration-poster-15x15';
-  if (size === '15 x 20 cm') return 'inspiration-poster-15x20';
-  if (size === '15 x 30 cm') return 'inspiration-poster-15x30';
-  if (size === '20 x 10 cm') return 'inspiration-poster-20x10';
-  if (size === '20 x 30 cm') return 'inspiration-poster-20x30';
-  if (size === '25 x 35 cm') return 'inspiration-poster-25x35';
-  if (size === '30 x 15 cm') return 'inspiration-poster-30x15';
-  if (size === '30 x 20 cm') return 'inspiration-poster-30x20';
-  if (size === '30 x 40 cm') return 'inspiration-poster-30x40';
-  if (size === '40 x 25 cm') return 'inspiration-poster-40x25';
-  if (size === '40 x 60 cm') return 'inspiration-poster-40x60';
-  if (size === '50 x 50 cm') return 'inspiration-poster-50x50';
-  return 'inspiration-poster-10x15'; // default
+  if (size === 'A2 (42 x 59 cm)') return 'inspiration-poster-a2';
+  if (size === 'A1 (59 x 84 cm)') return 'inspiration-poster-a1';
+  if (size === 'A3 (30 x 42 cm)') return 'inspiration-poster-a3';
+  if (size === 'A4 (21 x 30 cm)') return 'inspiration-poster-a4';
+  return 'inspiration-poster-a3'; // default
 };
 
-export default function InspirationPosters({ lang, setLang }) {
+export default function InspirationPosters() {
+  const [lang, setLang] = useState('sv');
   const t = translations[lang];
   const [imgModal, setImgModal] = useState(null);
   const modalRef = useRef(null);
-  const [loadedImages, setLoadedImages] = useState(new Set());
 
   // Swipe gestures for mobile
   const handleSwipeLeft = () => {
@@ -89,11 +63,6 @@ export default function InspirationPosters({ lang, setLang }) {
   };
 
   useSwipeGesture(handleSwipeLeft, handleSwipeRight);
-
-  // Handle image loading
-  const handleImageLoad = (index) => {
-    setLoadedImages(prev => new Set(prev).add(index));
-  };
 
   // Trap focus inside modal and handle keyboard navigation
   useEffect(() => {
@@ -151,26 +120,14 @@ export default function InspirationPosters({ lang, setLang }) {
                 tabIndex={0}
                 aria-label={`Enlarge example inspiration poster ${i+1}`}
               >
-                {!loadedImages.has(i) && (
-                  <div 
-                    className="image-loading" 
-                    style={{ 
-                      width: '100%', 
-                      height: '100%', 
-                      position: 'absolute',
-                      top: 0,
-                      left: 0,
-                      zIndex: 1
-                    }}
-                  />
-                )}
-                <img 
+                <FastImage 
                   src={ex.src} 
                   alt={`Example inspiration poster ${i+1}`} 
-                  loading="lazy"
-                  className={`image-fade-in ${loadedImages.has(i) ? 'loaded' : ''}`}
-                  onLoad={() => handleImageLoad(i)}
-                  style={{ position: 'relative', zIndex: 2 }}
+                  loading={i < 3 ? "eager" : "lazy"}
+                  priority={i < 3}
+                  decoding="async"
+                  width="300"
+                  height="400"
                 />
               </div>
               <div style={{ 
@@ -207,15 +164,15 @@ export default function InspirationPosters({ lang, setLang }) {
               opacity: 1
             }}
           >
-            <img 
-              src={examples[imgModal].src} 
-              alt={`Enlarged example inspiration poster ${imgModal + 1}`}
+            <img
+              src={examples[imgModal].src}
+              alt={`Enlarged ${examples[imgModal].title}`}
               className="modal-image"
               loading="lazy"
               style={{ transition: 'opacity 0.3s' }}
             />
-            <button 
-              onClick={() => setImgModal(null)} 
+            <button
+              onClick={() => setImgModal(null)}
               className="modal-close"
               aria-label="Close modal"
               autoFocus

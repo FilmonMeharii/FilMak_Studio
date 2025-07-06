@@ -1,13 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header.jsx';
+import FastImage from '../components/FastImage.jsx';
 import { useSwipeGesture } from '../hooks/useSwipeGesture.js';
 import '../styles/exam.css';
-import florence from '../assets/florence.jpg';
-import florence2 from '../assets/florence2.jpg';
-import gozo from '../assets/Gozo.webp';
-import rose from '../assets/rose.jpg';
-import img1 from '../assets/61647459de00cb906f4996e6006e73a0.jpg';
+import gozo from '../assets/exam/gozo.webp?v=1';
 
 const translations = {
   sv: {
@@ -25,27 +22,20 @@ const translations = {
 };
 
 const examples = [
-  { src: florence2, title: 'Examposter 1', size: 'A3 (30 x 42 cm)' },
-  { src: florence2, title: 'Examposter 2', size: 'A2 (42 x 59 cm)' },
-  { src: florence2, title: 'Examposter 3', size: 'A1 (59 x 84 cm)' },
-  { src: img1, title: 'Examposter 4', size: 'A3 (30 x 42 cm)' },
-  { src: img1, title: 'Examposter 5', size: 'A2 (42 x 59 cm)' },
-  { src: rose, title: 'Examposter 6', size: 'A3 (30 x 42 cm)' },
-  { src: rose, title: 'Examposter 7', size: 'A2 (42 x 59 cm)' },
-  { src: rose, title: 'Examposter 8', size: 'A1 (59 x 84 cm)' },
-  { src: gozo, title: 'Examposter 9', size: 'A2 (42 x 59 cm)' },
-  { src: gozo, title: 'Examposter 10', size: 'A1 (59 x 84 cm)' },
-  { src: florence, title: 'Examposter 11', size: 'A3 (30 x 42 cm)' },
-  { src: florence, title: 'Examposter 12', size: 'A2 (42 x 59 cm)' },
-  { src: florence, title: 'Examposter 13', size: 'A1 (59 x 84 cm)' }
+  { src: gozo, title: 'Examposter - Gozo A2', size: 'A2 (42 x 59 cm)' },
+  { src: gozo, title: 'Examposter - Gozo A1', size: 'A1 (59 x 84 cm)' },
+  { src: gozo, title: 'Examposter - Gozo A3', size: 'A3 (30 x 42 cm)' },
+  { src: gozo, title: 'Examposter - Gozo A4', size: 'A4 (21 x 30 cm)' },
+  { src: gozo, title: 'Examposter - Gozo A0', size: 'A0 (84 x 119 cm)' }
 ];
 
 // Function to get CSS class based on size
 const getSizeClass = (size) => {
-  if (size === 'A3 (30 x 42 cm)') return 'exam-poster-a3';
   if (size === 'A2 (42 x 59 cm)') return 'exam-poster-a2';
   if (size === 'A1 (59 x 84 cm)') return 'exam-poster-a1';
-  return 'exam-poster-a2'; // default
+  if (size === 'A3 (30 x 42 cm)') return 'exam-poster-a3';
+  if (size === 'A4 (21 x 30 cm)') return 'exam-poster-a4';
+  return 'exam-poster-a3'; // default
 };
 
 export default function ExamPosters() {
@@ -53,7 +43,6 @@ export default function ExamPosters() {
   const t = translations[lang];
   const [imgModal, setImgModal] = useState(null);
   const modalRef = useRef(null);
-  const [loadedImages, setLoadedImages] = useState(new Set());
 
   // Swipe gestures for mobile
   const handleSwipeLeft = () => {
@@ -69,11 +58,6 @@ export default function ExamPosters() {
   };
 
   useSwipeGesture(handleSwipeLeft, handleSwipeRight);
-
-  // Handle image loading
-  const handleImageLoad = (index) => {
-    setLoadedImages(prev => new Set(prev).add(index));
-  };
 
   // Trap focus inside modal and handle keyboard navigation
   useEffect(() => {
@@ -131,26 +115,14 @@ export default function ExamPosters() {
                 tabIndex={0}
                 aria-label={`Enlarge example exam poster ${i+1}`}
               >
-                {!loadedImages.has(i) && (
-                  <div 
-                    className="image-loading" 
-                    style={{ 
-                      width: '100%', 
-                      height: '100%', 
-                      position: 'absolute',
-                      top: 0,
-                      left: 0,
-                      zIndex: 1
-                    }}
-                  />
-                )}
-                <img 
-                  src={ex.src} 
+                <FastImage 
+                  src={`${ex.src}?v=1`} 
                   alt={`Example exam poster ${i+1}`} 
-                  loading="lazy"
-                  className={`image-fade-in ${loadedImages.has(i) ? 'loaded' : ''}`}
-                  onLoad={() => handleImageLoad(i)}
-                  style={{ position: 'relative', zIndex: 2 }}
+                  loading={i < 3 ? "eager" : "lazy"}
+                  priority={i < 3}
+                  decoding="async"
+                  width="300"
+                  height="400"
                 />
               </div>
               <div style={{ 
@@ -188,8 +160,8 @@ export default function ExamPosters() {
             }}
           >
             <img
-              src={examples[imgModal].src}
-              alt={`Enlarged example exam poster ${imgModal + 1}`}
+              src={`${examples[imgModal].src}?v=1`}
+              alt={`Enlarged ${examples[imgModal].title}`}
               className="modal-image"
               loading="lazy"
               style={{ transition: 'opacity 0.3s' }}
