@@ -1,21 +1,11 @@
 /* Inspiration Page Specific Styles */
-.inspiration-images-grid,
-.birthday-images-grid,
-.christening-images-grid,
-.exam-images-grid,
-.graduation-images-grid {
-  width: 100%;
-  margin: 0 auto;
-}
-
 .inspiration-images-grid {
   width: 100%;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 16px;
   align-items: start;
-  padding: 0 16px;
 }
 
 .inspiration-image-container {
@@ -44,63 +34,16 @@
   object-fit: cover;
 }
 
-/* Specific poster sizes for inspiration - realistic proportions */
-.inspiration-poster-10x15 { width: 35%; aspect-ratio: 2/3; height: auto; margin: 0 auto; display: block; }
-.inspiration-poster-20x10 { width: 40%; aspect-ratio: 3/2; height: auto; margin: 0 auto; display: block; }
-.inspiration-poster-40x25 { width: 40%; aspect-ratio: 1/1; height: auto; margin: 0 auto; display: block; }
-.inspiration-poster-15x20 { width: 40%; aspect-ratio: 3/4; height: auto; margin: 0 auto; display: block; }
-.inspiration-poster-15x25 { width: 40%; aspect-ratio: 1/2; height: auto; margin: 0 auto; display: block; }
-.inspiration-poster-20x10 { width: 45%; aspect-ratio: 2/1; height: auto; margin: 0 auto; display: block; }
-.inspiration-poster-20x30 { width: 40%; aspect-ratio: 2/3; height: auto; margin: 0 auto; display: block; }
-.inspiration-poster-25x35 { width: 45%; aspect-ratio: 5/7; height: auto; margin: 0 auto; display: block; }
-.inspiration-poster-30x15 { width: 50%; aspect-ratio: 2/1; height: auto; margin: 0 auto; display: block; }
-.inspiration-poster-30x20 { width: 50%; aspect-ratio: 3/2; height: auto; margin: 0 auto; display: block; }
-.inspiration-poster-30x40 { width: 50%; aspect-ratio: 3/4; height: auto; margin: 0 auto; display: block; }
-.inspiration-poster-40x25 { width: 55%; aspect-ratio: 8/5; height: auto; margin: 0 auto; display: block; }
-.inspiration-poster-40x60 { width: 55%; aspect-ratio: 2/3; height: auto; margin: 0 auto; display: block; }
-.inspiration-poster-50x50 { width: 55%; aspect-ratio: 1/1; height: auto; margin: 0 auto; display: block; }
-
 /* Specific poster sizes for inspiration - responsive dimensions */
-.inspiration-poster-60x80 {
-  width: 100%;
-  height: auto;
-  aspect-ratio: 60/80;
-  margin: 0 auto;
-}
-
-.inspiration-poster-70x100 {
-  width: 100%;
-  height: auto;
-  aspect-ratio: 70/100;
-  margin: 0 auto;
-}
-
-.inspiration-poster-80x120 {
-  width: 100%;
-  height: auto;
-  aspect-ratio: 80/120;
-  margin: 0 auto;
-}
-
-.inspiration-poster-60x200 {
-  width: 100%;
-  height: auto;
-  aspect-ratio: 60/200;
-  margin: 0 auto;
-}
-
-.inspiration-poster-50x150 {
-  width: 100%;
-  height: auto;
-  aspect-ratio: 50/150;
-  margin: 0 auto;
-}
+.inspiration-poster-a1 { width: 45%; aspect-ratio: 59/84; height: auto; margin: 0 auto; display: block; }
+.inspiration-poster-a2 { width: 40%; aspect-ratio: 42/59; height: auto; margin: 0 auto; display: block; }
+.inspiration-poster-a3 { width: 35%; aspect-ratio: 30/42; height: auto; margin: 0 auto; display: block; }
+.inspiration-poster-a4 { width: 30%; aspect-ratio: 21/30; height: auto; margin: 0 auto; display: block; }
 
 /* Responsive */
 @media (max-width: 1024px) {
   .inspiration-images-grid {
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 12px;
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
@@ -115,10 +58,6 @@
 }
 
 @media (max-width: 480px) {
-  .inspiration-images-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 8px;
-  }
   .inspiration-image-card {
     max-width: 120px;
     margin-left: auto;
@@ -132,32 +71,8 @@
   .inspiration-image-container div {
     font-size: 0.85em;
   }
-  
-  /* Override poster sizes on small screens */
-  .inspiration-poster-10x15,
-  .inspiration-poster-15x10,
-  .inspiration-poster-15x15,
-  .inspiration-poster-15x20,
-  .inspiration-poster-15x30,
-  .inspiration-poster-20x10,
-  .inspiration-poster-20x30,
-  .inspiration-poster-25x35,
-  .inspiration-poster-30x15,
-  .inspiration-poster-30x20,
-  .inspiration-poster-30x40,
-  .inspiration-poster-40x25,
-  .inspiration-poster-40x60,
-  .inspiration-poster-50x50 {
-    width: 100% !important;
-    max-width: 100% !important;
-  }
-  
-  .section {
-    margin-bottom: 32px;
-  }
-  
-  .section-with-margin {
-    margin: 32px 0 48px 0;
+  .inspiration-images-grid {
+    gap: 8px;
   }
 }
 
@@ -165,129 +80,5 @@
 @media (max-width: 360px) {
   .inspiration-images-grid {
     gap: 16px;
-  }
-  
-  .modal-content {
-    padding: 6px;
-  }
-  
-  .modal-close {
-    width: 28px;
-    height: 28px;
-    font-size: 12px;
-  }
-  
-  .section {
-    margin-bottom: 28px;
-  }
-  
-  .section-with-margin {
-    margin: 28px 0 44px 0;
-  }
-}
-
-
-
-/* Modal styles for inspiration page */
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(34,34,59,0.85);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-  transition: background 0.3s;
-}
-
-.modal-content {
-  max-width: 95vw;
-  max-height: 95vh;
-  background: #fff;
-  border-radius: 18px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  position: relative;
-  padding: 16px;
-  animation: modalIn 0.3s cubic-bezier(.4,0,.2,1);
-}
-
-@keyframes modalIn {
-  from { transform: scale(0.95) translateY(40px); opacity: 0; }
-  to { transform: scale(1) translateY(0); opacity: 1; }
-}
-
-.modal-image {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-  border-radius: 8px;
-  width: auto;
-  height: auto;
-  display: block;
-}
-
-.modal-close {
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  background: #fff;
-  color: #181818;
-  border: none;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  font-weight: 600;
-  font-size: 18px;
-  cursor: pointer;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.2s cubic-bezier(.4,0,.2,1);
-}
-
-.modal-close:hover {
-  background: #f5f5f5;
-  transform: scale(1.05);
-}
-
-/* Modal responsive styles */
-@media (max-width: 768px) {
-  .modal-content {
-    max-width: 98vw;
-    max-height: 98vh;
-    padding: 12px;
-  }
-  
-  .modal-close {
-    width: 36px;
-    height: 36px;
-    font-size: 16px;
-    top: 12px;
-    right: 12px;
-  }
-}
-
-@media (max-width: 480px) {
-  .modal-content {
-    max-width: 100vw;
-    max-height: 100vh;
-    padding: 8px;
-    border-radius: 12px;
-  }
-  
-  .modal-close {
-    width: 32px;
-    height: 32px;
-    font-size: 14px;
-    top: 8px;
-    right: 8px;
   }
 }
