@@ -3,7 +3,7 @@
   width: 100%;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 24px;
   align-items: start;
 }
@@ -60,7 +60,8 @@
 
 @media (max-width: 480px) {
   .graduation-image-card {
-    max-width: 120px;
+    width: 100%;
+    max-width: 100%;
     margin-left: auto;
     margin-right: auto;
     padding: 0;
@@ -74,6 +75,7 @@
   }
   .graduation-images-grid {
     gap: 8px;
+    width: 100%;
   }
 }
 

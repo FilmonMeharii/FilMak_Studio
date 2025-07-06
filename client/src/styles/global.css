@@ -177,6 +177,7 @@ body {
   min-height: 100vh;
   width: 100%;
   position: relative;
+  padding-bottom: 120px;
 }
 
 .section {
@@ -529,7 +530,8 @@ button:focus, .nav-link:focus, .image-card:focus, .category-card:focus, .modal-c
     font-size: 2em;
   }
   
-  .header, .section, .section-with-margin { padding: 0 10px; }
+  .header, .section { padding: 0 10px; }
+  .section-with-margin { padding: 0; }
   .footer { font-size: 0.95em; padding: 24px 0 10px 0; }
   
   /* Modal improvements for mobile */
@@ -565,7 +567,7 @@ button:focus, .nav-link:focus, .image-card:focus, .category-card:focus, .modal-c
   
   .section-with-margin {
     margin: 24px 0 40px 0;
-    padding: 0 8px;
+    padding: 0;
   }
   
   .page-title {
@@ -769,10 +771,7 @@ button:focus, .nav-link:focus, .image-card:focus, .category-card:focus, .modal-c
     font-size: 1em;
     margin-bottom: 10px;
   }
-  .section-with-margin {
-    margin: 20px 0 40px 0;
-    padding: 0 8px;
-  }
+
 }
 
 /* Loading states and image placeholders */
@@ -1234,25 +1233,8 @@ button:focus, .nav-link:focus, .image-card:focus, .category-card:focus, .modal-c
   }
 }
 
-/* Responsive styles for the new flexbox layout */
+/* Responsive styles for featured image containers */
 @media (max-width: 768px) {
-  .wedding-images-grid,
-  .christening-images-grid,
-  .birthday-images-grid,
-  .graduation-images-grid {
-    flex-direction: column !important;
-    gap: 16px !important;
-    padding: 0 16px !important;
-  }
-  
-  .wedding-image-container,
-  .christening-image-container,
-  .birthday-image-container,
-  .graduation-image-container {
-    max-width: 100% !important;
-    width: 100% !important;
-  }
-  
   .dop-featured-image-container,
   .birthday-featured-image-container {
     flex-direction: column !important;
@@ -1262,23 +1244,6 @@ button:focus, .nav-link:focus, .image-card:focus, .category-card:focus, .modal-c
 }
 
 @media (max-width: 480px) {
-  .wedding-images-grid,
-  .christening-images-grid,
-  .birthday-images-grid,
-  .graduation-images-grid {
-    flex-direction: column !important;
-    gap: 12px !important;
-    padding: 0 12px !important;
-  }
-  
-  .wedding-image-container,
-  .christening-image-container,
-  .birthday-image-container,
-  .graduation-image-container {
-    max-width: 100% !important;
-    width: 100% !important;
-  }
-  
   .dop-featured-image-container,
   .birthday-featured-image-container {
     flex-direction: column !important;
@@ -1288,14 +1253,6 @@ button:focus, .nav-link:focus, .image-card:focus, .category-card:focus, .modal-c
 }
 
 @media (max-width: 360px) {
-  .wedding-images-grid,
-  .christening-images-grid,
-  .birthday-images-grid,
-  .graduation-images-grid {
-    gap: 8px !important;
-    padding: 0 8px !important;
-  }
-  
   .dop-featured-image-container,
   .birthday-featured-image-container {
     gap: 8px !important;

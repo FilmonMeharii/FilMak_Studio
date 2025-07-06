@@ -63,7 +63,8 @@
 
 @media (max-width: 480px) {
   .wedding-image-card {
-    max-width: 120px;
+    width: 100%;
+    max-width: 100%;
     margin-left: auto;
     margin-right: auto;
     padding: 0;
@@ -77,6 +78,7 @@
   }
   .wedding-images-grid {
     gap: 8px;
+    width: 100%;
   }
 }
 
