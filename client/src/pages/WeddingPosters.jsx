@@ -8,6 +8,9 @@ import florence2 from '../assets/florence2.jpg';
 import gozo from '../assets/Gozo.webp';
 import rose from '../assets/rose.jpg';
 import img1 from '../assets/61647459de00cb906f4996e6006e73a0.jpg';
+import whitePoster from '../assets/wedding/white poster.png';
+import colorPoster from '../assets/wedding/color poster.png';
+import blackColored from '../assets/wedding/black colored.png';
 
 const translations = {
   sv: {
@@ -25,26 +28,9 @@ const translations = {
 };
 
 const examples = [
-  { src: florence, title: 'Bröllopsposter 1', size: 'A3 (30 x 42 cm)' },
-  { src: florence, title: 'Bröllopsposter 2', size: 'A2 (42 x 59 cm)' },
-  { src: florence, title: 'Bröllopsposter 3', size: 'A1 (59 x 84 cm)' },
-  { src: florence, title: 'Bröllopsposter 4', size: 'A0 (84 x 119 cm)' },
-  { src: florence, title: 'Bröllopsposter 5', size: 'Rollup (85 x 200 cm)' },
-  { src: florence2, title: 'Bröllopsposter 6', size: 'A3 (30 x 42 cm)' },
-  { src: florence2, title: 'Bröllopsposter 7', size: 'A2 (42 x 59 cm)' },
-  { src: florence2, title: 'Bröllopsposter 8', size: 'A1 (59 x 84 cm)' },
-  { src: florence2, title: 'Bröllopsposter 9', size: 'A0 (84 x 119 cm)' },
-  { src: gozo, title: 'Bröllopsposter 10', size: 'A3 (30 x 42 cm)' },
-  { src: gozo, title: 'Bröllopsposter 11', size: 'A2 (42 x 59 cm)' },
-  { src: gozo, title: 'Bröllopsposter 12', size: 'A1 (59 x 84 cm)' },
-  { src: gozo, title: 'Bröllopsposter 13', size: 'A0 (84 x 119 cm)' },
-  { src: rose, title: 'Bröllopsposter 14', size: 'A3 (30 x 42 cm)' },
-  { src: rose, title: 'Bröllopsposter 15', size: 'A2 (42 x 59 cm)' },
-  { src: rose, title: 'Bröllopsposter 16', size: 'A1 (59 x 84 cm)' },
-  { src: rose, title: 'Bröllopsposter 17', size: 'Rollup (85 x 200 cm)' },
-  { src: img1, title: 'Bröllopsposter 18', size: 'A3 (30 x 42 cm)' },
-  { src: img1, title: 'Bröllopsposter 19', size: 'A2 (42 x 59 cm)' },
-  { src: img1, title: 'Bröllopsposter 20', size: 'A1 (59 x 84 cm)' }
+  { src: whitePoster, title: 'Bröllopsposter - Vit Rollup', size: 'Vit Rollup (85 x 200 cm)' },
+  { src: colorPoster, title: 'Bröllopsposter - Färgad Rollup', size: 'Färgad Rollup (85 x 200 cm)' },
+  { src: blackColored, title: 'Bröllopsposter - Svart Färgad Rollup', size: 'Svart Färgad Rollup (85 x 200 cm)' }
 ];
 
 // Function to get CSS class based on size
@@ -53,7 +39,7 @@ const getSizeClass = (size) => {
   if (size === 'A1 (59 x 84 cm)') return 'wedding-poster-a1';
   if (size === 'A0 (84 x 119 cm)') return 'wedding-poster-a0';
   if (size === 'A3 (30 x 42 cm)') return 'wedding-poster-a3';
-  if (size === 'Rollup (85 x 200 cm)') return 'wedding-poster-rollup';
+  if (size === 'Rollup (85 x 200 cm)' || size === 'Vit Rollup (85 x 200 cm)' || size === 'Färgad Rollup (85 x 200 cm)' || size === 'Svart Färgad Rollup (85 x 200 cm)') return 'wedding-poster-rollup';
   return 'wedding-poster-a2'; // default
 };
 
@@ -83,6 +69,16 @@ export default function WeddingPosters() {
   const handleImageLoad = (index) => {
     setLoadedImages(prev => new Set(prev).add(index));
   };
+
+  // Preload critical images (first 6)
+  useEffect(() => {
+    const preloadImages = examples.slice(0, 6).map((ex, index) => {
+      const img = new Image();
+      img.src = ex.src;
+      img.onload = () => handleImageLoad(index);
+      return img;
+    });
+  }, []);
 
   // Trap focus inside modal and handle keyboard navigation
   useEffect(() => {
@@ -130,15 +126,16 @@ export default function WeddingPosters() {
 
       {/* Images Grid */}
       <section className="section-with-margin">
-        <div className="wedding-images-grid">
+        <div className="wedding-images-grid" style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center', gap: '24px', width: '100%', padding: '0 24px' }}>
           {examples.map((ex, i) => (
-            <div key={i} className="wedding-image-container">
+            <div key={i} className="wedding-image-container" style={{ maxWidth: '30%', width: 'auto' }}>
               <div
                 className={`wedding-image-card ${getSizeClass(ex.size)}`}
                 onClick={() => setImgModal(i)}
                 title="Klicka för att förstora"
                 tabIndex={0}
                 aria-label={`Enlarge example wedding poster ${i+1}`}
+                style={{ background: 'none', boxShadow: 'none', border: 'none' }}
               >
                 {!loadedImages.has(i) && (
                   <div 
@@ -156,10 +153,13 @@ export default function WeddingPosters() {
                 <img 
                   src={ex.src} 
                   alt={`Example wedding poster ${i+1}`} 
-                  loading="lazy"
+                  loading={i < 6 ? "eager" : "lazy"}
                   className={`image-fade-in ${loadedImages.has(i) ? 'loaded' : ''}`}
                   onLoad={() => handleImageLoad(i)}
                   style={{ position: 'relative', zIndex: 2 }}
+                  decoding="async"
+                  width="300"
+                  height="400"
                 />
               </div>
               <div style={{ 

@@ -8,6 +8,8 @@ import florence2 from '../assets/florence2.jpg';
 import gozo from '../assets/Gozo.webp';
 import rose from '../assets/rose.jpg';
 import img1 from '../assets/61647459de00cb906f4996e6006e73a0.jpg';
+import girlStudenten from '../assets/graduation/girl studenten.png';
+import boyStudenten from '../assets/graduation/boy studenten.png';
 
 const translations = {
   sv: {
@@ -25,22 +27,8 @@ const translations = {
 };
 
 const examples = [
-  { src: gozo, title: 'Studentposter 1', size: 'A3 (30 x 42 cm)' },
-  { src: gozo, title: 'Studentposter 2', size: 'A2 (42 x 59 cm)' },
-  { src: gozo, title: 'Studentposter 3', size: 'A1 (59 x 84 cm)' },
-  { src: gozo, title: 'Studentposter 4', size: 'A0 (84 x 119 cm)' },
-  { src: florence, title: 'Studentposter 5', size: 'A3 (30 x 42 cm)' },
-  { src: florence, title: 'Studentposter 6', size: 'A2 (42 x 59 cm)' },
-  { src: florence, title: 'Studentposter 7', size: 'A1 (59 x 84 cm)' },
-  { src: rose, title: 'Studentposter 8', size: 'A3 (30 x 42 cm)' },
-  { src: rose, title: 'Studentposter 9', size: 'A2 (42 x 59 cm)' },
-  { src: rose, title: 'Studentposter 10', size: 'A1 (59 x 84 cm)' },
-  { src: img1, title: 'Studentposter 11', size: 'A3 (30 x 42 cm)' },
-  { src: img1, title: 'Studentposter 12', size: 'A2 (42 x 59 cm)' },
-  { src: img1, title: 'Studentposter 13', size: 'A1 (59 x 84 cm)' },
-  { src: florence2, title: 'Studentposter 14', size: 'A3 (30 x 42 cm)' },
-  { src: florence2, title: 'Studentposter 15', size: 'A2 (42 x 59 cm)' },
-  { src: florence2, title: 'Studentposter 16', size: 'A1 (59 x 84 cm)' }
+  { src: girlStudenten, title: 'Studentposter - Flicka', size: '100 x 60 cm' },
+  { src: boyStudenten, title: 'Studentposter - Pojke', size: '100 x 60 cm' }
 ];
 
 // Function to get CSS class based on size
@@ -125,15 +113,16 @@ export default function GraduationPosters() {
 
       {/* Images Grid */}
       <section className="section-with-margin">
-        <div className="graduation-images-grid">
+        <div className="graduation-images-grid" style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center', gap: '24px', width: '100%', padding: '0 24px' }}>
           {examples.map((ex, i) => (
-            <div key={i} className="graduation-image-container">
+            <div key={i} className="graduation-image-container" style={{ maxWidth: '45%', width: 'auto' }}>
               <div
                 className={`graduation-image-card ${getSizeClass(ex.size)}`}
                 onClick={() => setImgModal(i)}
                 title="Klicka för att förstora"
                 tabIndex={0}
                 aria-label={`Enlarge example graduation poster ${i+1}`}
+                style={{ background: 'none', boxShadow: 'none', border: 'none' }}
               >
                 {!loadedImages.has(i) && (
                   <div 

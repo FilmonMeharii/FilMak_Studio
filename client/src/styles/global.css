@@ -1224,4 +1224,73 @@ button:focus, .nav-link:focus, .image-card:focus, .category-card:focus, .modal-c
   .image-container {
     margin-bottom: 12px;
   }
+}
+
+/* Responsive styles for the new flexbox layout */
+@media (max-width: 768px) {
+  .wedding-images-grid,
+  .christening-images-grid,
+  .birthday-images-grid,
+  .graduation-images-grid {
+    flex-direction: column !important;
+    gap: 16px !important;
+    padding: 0 16px !important;
+  }
+  
+  .wedding-image-container,
+  .christening-image-container,
+  .birthday-image-container,
+  .graduation-image-container {
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+  
+  .dop-featured-image-container,
+  .birthday-featured-image-container {
+    flex-direction: column !important;
+    gap: 16px !important;
+    padding: 0 16px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .wedding-images-grid,
+  .christening-images-grid,
+  .birthday-images-grid,
+  .graduation-images-grid {
+    flex-direction: column !important;
+    gap: 12px !important;
+    padding: 0 12px !important;
+  }
+  
+  .wedding-image-container,
+  .christening-image-container,
+  .birthday-image-container,
+  .graduation-image-container {
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+  
+  .dop-featured-image-container,
+  .birthday-featured-image-container {
+    flex-direction: column !important;
+    gap: 12px !important;
+    padding: 0 12px !important;
+  }
+}
+
+@media (max-width: 360px) {
+  .wedding-images-grid,
+  .christening-images-grid,
+  .birthday-images-grid,
+  .graduation-images-grid {
+    gap: 8px !important;
+    padding: 0 8px !important;
+  }
+  
+  .dop-featured-image-container,
+  .birthday-featured-image-container {
+    gap: 8px !important;
+    padding: 0 8px !important;
+  }
 } 

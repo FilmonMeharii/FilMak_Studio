@@ -8,6 +8,8 @@ import florence2 from '../assets/florence2.jpg';
 import gozo from '../assets/Gozo.webp';
 import rose from '../assets/rose.jpg';
 import img1 from '../assets/61647459de00cb906f4996e6006e73a0.jpg';
+import girlBirthday from '../assets/birthday/girl birthday (1).png';
+import boyBirthday from '../assets/birthday/boy birthday.png';
 
 const translations = {
   sv: {
@@ -24,22 +26,7 @@ const translations = {
   },
 };
 
-const examples = [
-  { src: img1, title: 'Födelsedagsposter 1', size: 'A4 (21 x 30 cm)' },
-  { src: img1, title: 'Födelsedagsposter 2', size: 'A3 (30 x 42 cm)' },
-  { src: img1, title: 'Födelsedagsposter 3', size: 'A2 (42 x 59 cm)' },
-  { src: rose, title: 'Födelsedagsposter 4', size: 'A4 (21 x 30 cm)' },
-  { src: rose, title: 'Födelsedagsposter 5', size: 'A3 (30 x 42 cm)' },
-  { src: rose, title: 'Födelsedagsposter 6', size: 'A2 (42 x 59 cm)' },
-  { src: florence, title: 'Födelsedagsposter 7', size: 'A3 (30 x 42 cm)' },
-  { src: florence, title: 'Födelsedagsposter 8', size: 'A2 (42 x 59 cm)' },
-  { src: florence, title: 'Födelsedagsposter 9', size: 'A1 (59 x 84 cm)' },
-  { src: gozo, title: 'Födelsedagsposter 10', size: 'A2 (42 x 59 cm)' },
-  { src: gozo, title: 'Födelsedagsposter 11', size: 'A1 (59 x 84 cm)' },
-  { src: florence2, title: 'Födelsedagsposter 12', size: 'A3 (30 x 42 cm)' },
-  { src: florence2, title: 'Födelsedagsposter 13', size: 'A2 (42 x 59 cm)' },
-  { src: florence2, title: 'Födelsedagsposter 14', size: 'A1 (59 x 84 cm)' }
-];
+const examples = [];
 
 // Function to get CSS class based on size
 const getSizeClass = (size) => {
@@ -57,16 +44,21 @@ export default function BirthdayPosters() {
   const modalRef = useRef(null);
   const [loadedImages, setLoadedImages] = useState(new Set());
 
+  const featuredImages = [
+    { src: girlBirthday, title: 'Födelsedagsposter - Flicka', size: '100 x 60 cm' },
+    { src: boyBirthday, title: 'Födelsedagsposter - Pojke', size: '100 x 60 cm' }
+  ];
+
   // Swipe gestures for mobile
   const handleSwipeLeft = () => {
     if (imgModal !== null) {
-      setImgModal((prev) => (prev + 1) % examples.length);
+      setImgModal((prev) => (prev + 1) % featuredImages.length);
     }
   };
 
   const handleSwipeRight = () => {
     if (imgModal !== null) {
-      setImgModal((prev) => (prev - 1 + examples.length) % examples.length);
+      setImgModal((prev) => (prev - 1 + featuredImages.length) % featuredImages.length);
     }
   };
 
@@ -84,9 +76,9 @@ export default function BirthdayPosters() {
         if (e.key === 'Escape') {
           setImgModal(null);
         } else if (e.key === 'ArrowRight') {
-          setImgModal((prev) => (prev + 1) % examples.length);
+          setImgModal((prev) => (prev + 1) % featuredImages.length);
         } else if (e.key === 'ArrowLeft') {
-          setImgModal((prev) => (prev - 1 + examples.length) % examples.length);
+          setImgModal((prev) => (prev - 1 + featuredImages.length) % featuredImages.length);
         } else if (e.key === 'Tab') {
           // Trap focus
           const focusable = modalRef.current.querySelectorAll('button, [tabindex]:not([tabindex="-1"])');
@@ -121,52 +113,40 @@ export default function BirthdayPosters() {
         </Link>
       </div>
 
-      {/* Images Grid */}
-      <section className="section-with-margin">
-        <div className="birthday-images-grid">
-          {examples.map((ex, i) => (
-            <div key={i} className="birthday-image-container">
-              <div
-                className={`birthday-image-card ${getSizeClass(ex.size)}`}
-                onClick={() => setImgModal(i)}
-                title="Klicka för att förstora"
-                tabIndex={0}
-                aria-label={`Enlarge example birthday poster ${i+1}`}
-              >
-                {!loadedImages.has(i) && (
-                  <div 
-                    className="image-loading" 
-                    style={{ 
-                      width: '100%', 
-                      height: '100%', 
-                      position: 'absolute',
-                      top: 0,
-                      left: 0,
-                      zIndex: 1
-                    }}
-                  />
-                )}
-                <img 
-                  src={ex.src} 
-                  alt={`Example birthday poster ${i+1}`} 
-                  loading="lazy"
-                  className={`image-fade-in ${loadedImages.has(i) ? 'loaded' : ''}`}
-                  onLoad={() => handleImageLoad(i)}
-                  style={{ position: 'relative', zIndex: 2 }}
-                />
-              </div>
-              <div style={{ 
-                marginTop: '8px', 
-                fontSize: '0.9em', 
-                color: '#666',
-                fontWeight: '500'
-              }}>
-                {ex.size}
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
+      {/* Featured birthday images at the top of the grid, both clickable */}
+      <div className="birthday-featured-image-container" style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center', gap: '24px', margin: '24px 0 8px 0', width: '100%', padding: '0 24px' }}>
+        {featuredImages.map((img, idx) => (
+          <div
+            key={img.title}
+            className="birthday-image-card"
+            onClick={() => setImgModal(-1 - idx)}
+            title="Klicka för att förstora"
+            tabIndex={0}
+            aria-label={`Enlarge featured birthday poster ${idx+1}`}
+            style={{ cursor: 'pointer', maxWidth: '45%', width: 'auto', background: 'none', boxShadow: 'none', border: 'none' }}
+          >
+            <img 
+              src={img.src} 
+              alt={img.title}
+              style={{
+                maxWidth: '100%',
+                maxHeight: '320px',
+                height: 'auto',
+                width: 'auto',
+                objectFit: 'contain',
+                borderRadius: '18px',
+                display: 'block',
+                margin: '0 auto',
+                background: 'none',
+                boxShadow: 'none',
+                padding: 0
+              }}
+            />
+          </div>
+        ))}
+      </div>
+
+
 
       {/* Image Modal */}
       {imgModal !== null && (
@@ -190,8 +170,8 @@ export default function BirthdayPosters() {
             }}
           >
             <img
-              src={examples[imgModal].src}
-              alt={`Enlarged example birthday poster ${imgModal + 1}`}
+              src={imgModal < 0 ? featuredImages[Math.abs(imgModal) - 1].src : examples[imgModal].src}
+              alt={imgModal < 0 ? `Enlarged ${featuredImages[Math.abs(imgModal) - 1].title}` : `Enlarged example birthday poster ${imgModal + 1}`}
               className="modal-image"
               loading="lazy"
               style={{ transition: 'opacity 0.3s' }}
@@ -205,7 +185,7 @@ export default function BirthdayPosters() {
               ×
             </button>
             <button
-              onClick={() => setImgModal((prev) => (prev - 1 + examples.length) % examples.length)}
+              onClick={() => setImgModal((prev) => (prev - 1 + featuredImages.length) % featuredImages.length)}
               className="modal-prev"
               aria-label="Previous image"
               style={{ position: 'absolute', left: 0, top: '50%', transform: 'translateY(-50%)', fontSize: '2em', background: 'none', border: 'none', color: '#fff', cursor: 'pointer', padding: '0 16px' }}
@@ -213,7 +193,7 @@ export default function BirthdayPosters() {
               ‹
             </button>
             <button
-              onClick={() => setImgModal((prev) => (prev + 1) % examples.length)}
+              onClick={() => setImgModal((prev) => (prev + 1) % featuredImages.length)}
               className="modal-next"
               aria-label="Next image"
               style={{ position: 'absolute', right: 0, top: '50%', transform: 'translateY(-50%)', fontSize: '2em', background: 'none', border: 'none', color: '#fff', cursor: 'pointer', padding: '0 16px' }}

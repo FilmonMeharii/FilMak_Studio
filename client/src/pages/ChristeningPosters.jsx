@@ -22,20 +22,7 @@ const translations = {
   },
 };
 
-const examples = [
-  { src: dop, title: 'Dopsposter 1', size: 'A3 (30 x 42 cm)' },
-  { src: dop, title: 'Dopsposter 2', size: 'A2 (42 x 59 cm)' },
-  { src: dop, title: 'Dopsposter 3', size: 'A1 (59 x 84 cm)' },
-  { src: dop, title: 'Dopsposter 4', size: 'Rollup (85 x 200 cm)' },
-  { src: dop, title: 'Dopsposter 5', size: 'Custom (100 x 250 cm)' },
-  { src: dop, title: 'Dopsposter 6', size: 'A3 (30 x 42 cm)' },
-  { src: dop, title: 'Dopsposter 7', size: 'A2 (42 x 59 cm)' },
-  { src: dop, title: 'Dopsposter 8', size: 'A1 (59 x 84 cm)' },
-  { src: dop, title: 'Dopsposter 9', size: 'Rollup (85 x 200 cm)' },
-  { src: dop, title: 'Dopsposter 10', size: 'Custom (100 x 250 cm)' },
-  { src: dop, title: 'Dopsposter 11', size: 'A3 (30 x 42 cm)' },
-  { src: dop, title: 'Dopsposter 12', size: 'A2 (42 x 59 cm)' }
-];
+const examples = [];
 
 // Function to get CSS class based on size
 const getSizeClass = (size) => {
@@ -62,13 +49,13 @@ export default function ChristeningPosters() {
   // Swipe gestures for mobile
   const handleSwipeLeft = () => {
     if (imgModal !== null) {
-      setImgModal((prev) => (prev + 1) % examples.length);
+      setImgModal((prev) => (prev + 1) % featuredImages.length);
     }
   };
 
   const handleSwipeRight = () => {
     if (imgModal !== null) {
-      setImgModal((prev) => (prev - 1 + examples.length) % examples.length);
+      setImgModal((prev) => (prev - 1 + featuredImages.length) % featuredImages.length);
     }
   };
 
@@ -86,9 +73,9 @@ export default function ChristeningPosters() {
         if (e.key === 'Escape') {
           setImgModal(null);
         } else if (e.key === 'ArrowRight') {
-          setImgModal((prev) => (prev + 1) % examples.length);
+          setImgModal((prev) => (prev + 1) % featuredImages.length);
         } else if (e.key === 'ArrowLeft') {
-          setImgModal((prev) => (prev - 1 + examples.length) % examples.length);
+          setImgModal((prev) => (prev - 1 + featuredImages.length) % featuredImages.length);
         } else if (e.key === 'Tab') {
           // Trap focus
           const focusable = modalRef.current.querySelectorAll('button, [tabindex]:not([tabindex="-1"])');
@@ -123,7 +110,7 @@ export default function ChristeningPosters() {
       </div>
 
       {/* Featured dop images at the top of the grid, both clickable */}
-      <div className="dop-featured-image-container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '24px', margin: '24px 0 8px 0' }}>
+      <div className="dop-featured-image-container" style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center', gap: '24px', margin: '24px 0 8px 0', width: '100%', padding: '0 24px' }}>
         {featuredImages.map((img, idx) => (
           <div
             key={img.title}
@@ -132,7 +119,7 @@ export default function ChristeningPosters() {
             title="Klicka för att förstora"
             tabIndex={0}
             aria-label={`Enlarge featured christening poster ${idx+1}`}
-            style={{ cursor: 'pointer', maxWidth: '320px', width: 'auto', background: 'none', boxShadow: 'none', border: 'none' }}
+            style={{ cursor: 'pointer', maxWidth: '45%', width: 'auto', background: 'none', boxShadow: 'none', border: 'none' }}
           >
             <img 
               src={img.src} 
@@ -155,52 +142,7 @@ export default function ChristeningPosters() {
         ))}
       </div>
 
-      {/* Images Grid */}
-      <section className="section-with-margin">
-        <div className="christening-images-grid">
-          {examples.map((ex, i) => (
-            <div key={i} className="christening-image-container">
-              <div
-                className={`christening-image-card ${getSizeClass(ex.size)}`}
-                onClick={() => setImgModal(i)}
-                title="Klicka för att förstora"
-                tabIndex={0}
-                aria-label={`Enlarge example christening poster ${i+1}`}
-              >
-                {!loadedImages.has(i) && (
-                  <div 
-                    className="image-loading" 
-                    style={{ 
-                      width: '100%', 
-                      height: '100%', 
-                      position: 'absolute',
-                      top: 0,
-                      left: 0,
-                      zIndex: 1
-                    }}
-                  />
-                )}
-                <img 
-                  src={ex.src} 
-                  alt={`Example christening poster ${i+1}`} 
-                  loading="lazy"
-                  className={`image-fade-in ${loadedImages.has(i) ? 'loaded' : ''}`}
-                  onLoad={() => handleImageLoad(i)}
-                  style={{ position: 'relative', zIndex: 2 }}
-                />
-              </div>
-              <div style={{ 
-                marginTop: '8px', 
-                fontSize: '0.9em', 
-                color: '#666',
-                fontWeight: '500'
-              }}>
-                {ex.size}
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
+
 
       {/* Image Modal */}
       {imgModal !== null && (
@@ -239,7 +181,7 @@ export default function ChristeningPosters() {
               ×
             </button>
             <button
-              onClick={() => setImgModal((prev) => (prev - 1 + examples.length) % examples.length)}
+              onClick={() => setImgModal((prev) => (prev - 1 + featuredImages.length) % featuredImages.length)}
               className="modal-prev"
               aria-label="Previous image"
               style={{ position: 'absolute', left: 0, top: '50%', transform: 'translateY(-50%)', fontSize: '2em', background: 'none', border: 'none', color: '#fff', cursor: 'pointer', padding: '0 16px' }}
@@ -247,7 +189,7 @@ export default function ChristeningPosters() {
               ‹
             </button>
             <button
-              onClick={() => setImgModal((prev) => (prev + 1) % examples.length)}
+              onClick={() => setImgModal((prev) => (prev + 1) % featuredImages.length)}
               className="modal-next"
               aria-label="Next image"
               style={{ position: 'absolute', right: 0, top: '50%', transform: 'translateY(-50%)', fontSize: '2em', background: 'none', border: 'none', color: '#fff', cursor: 'pointer', padding: '0 16px' }}

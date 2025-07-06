@@ -207,15 +207,15 @@ export default function InspirationPosters({ lang, setLang }) {
               opacity: 1
             }}
           >
-            <img
-              src={examples[imgModal].src}
+            <img 
+              src={examples[imgModal].src} 
               alt={`Enlarged example inspiration poster ${imgModal + 1}`}
               className="modal-image"
               loading="lazy"
               style={{ transition: 'opacity 0.3s' }}
             />
-            <button
-              onClick={() => setImgModal(null)}
+            <button 
+              onClick={() => setImgModal(null)} 
               className="modal-close"
               aria-label="Close modal"
               autoFocus
@@ -268,4 +268,4 @@ export default function InspirationPosters({ lang, setLang }) {
       </footer>
     </div>
   );
-}
+} 

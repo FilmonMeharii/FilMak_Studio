@@ -6,6 +6,9 @@ import florence2 from '../assets/florence2.jpg';
 import gozo from '../assets/Gozo.webp';
 import rose from '../assets/dop/dop (100 x 60 cm).png';
 import img1 from '../assets/61647459de00cb906f4996e6006e73a0.jpg';
+import whitePoster from '../assets/wedding/white poster.png';
+import girlBirthday from '../assets/birthday/girl birthday (1).png';
+import girlStudenten from '../assets/graduation/girl studenten.png';
 
 const translations = {
   sv: {
@@ -41,9 +44,9 @@ const categories = [
   {
     id: 'wedding',
     title: 'wedding',
-    image: florence,
+    image: whitePoster,
     icon: '💍',
-    sizes: ['85 x 200 cm', '60 x 200 cm']
+    sizes: ['Vit Rollup (85 x 200 cm)', 'Färgad Rollup (85 x 200 cm)']
   },
   {
     id: 'christening',
@@ -55,16 +58,16 @@ const categories = [
   {
     id: 'birthday',
     title: 'birthday',
-    image: img1,
+    image: girlBirthday,
     icon: '🎂',
-    sizes: ['60 x 200 cm', '50 x 150 cm']
+    sizes: ['100 x 60 cm', 'A3 (30 x 42 cm)']
   },
   {
     id: 'graduation',
     title: 'graduation',
-    image: gozo,
+    image: girlStudenten,
     icon: '🎓',
-    sizes: ['85 x 200 cm', '60 x 200 cm']
+    sizes: ['100 x 60 cm', 'A3 (30 x 42 cm)']
   },
   {
     id: 'exam',
