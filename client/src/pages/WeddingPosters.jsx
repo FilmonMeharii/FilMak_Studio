@@ -24,19 +24,19 @@ const translations = {
 };
 
 const examples = [
-  { src: whitePoster, title: 'Bröllopsposter - Vit', size: '85 x 200 cm' },
-  { src: colorPoster, title: 'Bröllopsposter - Färgad', size: '85 x 200 cm' },
-  { src: blackColored, title: 'Bröllopsposter - Svart färgad', size: '85 x 200 cm' }
+  { src: whitePoster, title: 'Bröllopsposter - Vit', size: '100 x 60 cm' },
+  { src: colorPoster, title: 'Bröllopsposter - Färgad', size: '100 x 60 cm' },
+  { src: blackColored, title: 'Bröllopsposter - Svart färgad', size: '100 x 60 cm' }
 ];
 
 // Function to get CSS class based on size
 const getSizeClass = (size) => {
+  if (size === '100 x 60 cm') return 'wedding-poster-rollup';
   if (size === 'A2 (42 x 59 cm)') return 'wedding-poster-a2';
   if (size === 'A1 (59 x 84 cm)') return 'wedding-poster-a1';
   if (size === 'A3 (30 x 42 cm)') return 'wedding-poster-a3';
   if (size === 'A4 (21 x 30 cm)') return 'wedding-poster-a4';
-  if (size === '85 x 200 cm') return 'wedding-poster-rollup';
-  return 'wedding-poster-rollup'; // default for rollup sizes
+  return 'wedding-poster-rollup'; // default to rollup for wedding
 };
 
 export default function WeddingPosters() {
@@ -105,7 +105,7 @@ export default function WeddingPosters() {
       </div>
 
       {/* Wedding Images Grid */}
-      <section className="section-with-margin">
+      <section className="section-with-margin" style={{ margin: '8px 0 8px 0' }}>
         <div className="wedding-images-grid">
           {examples.map((ex, i) => (
             <div key={i} className="wedding-image-container">

@@ -102,7 +102,7 @@ export default function ChristeningPosters() {
       </div>
 
       {/* Featured christening images at the top of the grid, both clickable */}
-      <div className="dop-featured-image-container" style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center', gap: '24px', margin: '24px 0 8px 0', width: '100%', padding: '0 24px' }}>
+      <div className="dop-featured-image-container" style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center', gap: '24px', margin: '8px 0 8px 0', width: '100%', padding: '0 24px' }}>
         {featuredImages.map((img, idx) => (
           <div
             key={img.title}

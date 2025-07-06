@@ -3,8 +3,8 @@
   width: 100%;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 8px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
   align-items: start;
 }
 
@@ -35,22 +35,23 @@
 }
 
 /* Specific poster sizes for graduation - responsive dimensions */
-.graduation-poster-a1 { width: 80%; aspect-ratio: 59/84; height: auto; margin: 0 auto; display: block; }
-.graduation-poster-a2 { width: 75%; aspect-ratio: 42/59; height: auto; margin: 0 auto; display: block; }
-.graduation-poster-a3 { width: 70%; aspect-ratio: 30/42; height: auto; margin: 0 auto; display: block; }
-.graduation-poster-a4 { width: 65%; aspect-ratio: 21/30; height: auto; margin: 0 auto; display: block; }
+.graduation-poster-a1 { width: 50%; aspect-ratio: 59/84; height: auto; margin: 0 auto; display: block; }
+.graduation-poster-a2 { width: 45%; aspect-ratio: 42/59; height: auto; margin: 0 auto; display: block; }
+.graduation-poster-a3 { width: 40%; aspect-ratio: 30/42; height: auto; margin: 0 auto; display: block; }
+.graduation-poster-a4 { width: 35%; aspect-ratio: 21/30; height: auto; margin: 0 auto; display: block; }
 
 /* Responsive */
 @media (max-width: 1024px) {
   .graduation-images-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
   }
 }
 
 @media (max-width: 768px) {
   .graduation-images-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 8px;
+    gap: 16px;
   }
   .graduation-image-card {
     min-width: 0;

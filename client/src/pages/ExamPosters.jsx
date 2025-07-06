@@ -104,7 +104,7 @@ export default function ExamPosters() {
       </div>
 
       {/* Images Grid */}
-      <section className="section-with-margin">
+      <section className="section-with-margin" style={{ margin: '8px 0 8px 0' }}>
         <div className="exam-images-grid">
           {examples.map((ex, i) => (
             <div key={i} className="exam-image-container">

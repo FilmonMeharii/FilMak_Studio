@@ -102,7 +102,7 @@ export default function GraduationPosters() {
       </div>
 
       {/* Graduation Images Grid */}
-      <section className="section-with-margin">
+      <section className="section-with-margin" style={{ margin: '8px 0 8px 0' }}>
         <div className="graduation-images-grid">
           {examples.map((ex, i) => (
             <div key={i} className="graduation-image-container">

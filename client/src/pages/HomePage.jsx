@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header.jsx';
-import florence from '../assets/inspiration/eti zmkah.webp';
+import florence from '../assets/inspiration/O Amlakey.webp';
 import gozo from '../assets/exam/gozo.webp';
 import rose from '../assets/dop/dop girl.webp';
-import img1 from '../assets/inspiration/10 tiezazat.webp';
 import whitePoster from '../assets/wedding/white poster.webp';
 import girlBirthday from '../assets/birthday/girl birthday.webp';
 import girlStudenten from '../assets/graduation/girl studenten.webp';

@@ -109,7 +109,7 @@ export default function InspirationPosters() {
       </div>
 
       {/* Images Grid */}
-      <section className="section-with-margin">
+      <section className="section-with-margin" style={{ margin: '8px 0 8px 0' }}>
         <div className="inspiration-images-grid">
           {examples.map((ex, i) => (
             <div key={i} className="inspiration-image-container">
