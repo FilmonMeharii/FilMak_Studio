@@ -4,11 +4,15 @@ import Header from '../components/Header.jsx';
 import FastImage from '../components/FastImage.jsx';
 import { useSwipeGesture } from '../hooks/useSwipeGesture.js';
 import '../styles/inspiration.css';
-import florence from '../assets/inspiration/O Amlakey.webp';
-import florence2 from '../assets/inspiration/eti zmkah.webp';
-import gozo from '../assets/exam/gozo.webp';
-import rose from '../assets/inspiration/10 tiezazat.webp';
-import img1 from '../assets/inspiration/nab bet egziabiher.webp';
+import amlakey from '../assets/inspiration/O Amlakey.webp';
+import etiZmkah from '../assets/inspiration/eti zmkah.webp';
+import tiezazat from '../assets/inspiration/10 tiezazat.webp';
+import tiezazatBig from '../assets/inspiration/10 tiezazat big.webp';
+import nabBet from '../assets/inspiration/nab bet egziabiher.webp';
+import xruyLbi from '../assets/inspiration/xruy lbi ftereley .jpg';
+import gerkaley from '../assets/inspiration/gerkaley ika emo.webp';
+import gahiLbey from '../assets/inspiration/gahi lbey.webp';
+import selamNeza from '../assets/inspiration/Selam neza bet.webp';
 
 const translations = {
   sv: {
@@ -26,21 +30,29 @@ const translations = {
 };
 
 const examples = [
-  { src: florence, title: 'Inspirationsposter - Florence', size: 'A2 (42 x 59 cm)' },
-  { src: florence2, title: 'Inspirationsposter - Florence 2', size: 'A1 (59 x 84 cm)' },
-  { src: gozo, title: 'Inspirationsposter - Gozo', size: 'A3 (30 x 42 cm)' },
-  { src: rose, title: 'Inspirationsposter - Rose', size: 'A4 (21 x 30 cm)' },
-  { src: img1, title: 'Inspirationsposter - Image 1', size: 'A2 (42 x 59 cm)' },
-  { src: florence, title: 'Inspirationsposter - Florence 3', size: 'A1 (59 x 84 cm)' }
+  { src: amlakey, title: 'Inspirationsposter - O Amlakey', size: 'O Amlakey (10 x 15 cm)' },
+  { src: etiZmkah, title: 'Inspirationsposter - Eti Zmkah', size: 'Eti Zmkah (15 x 10 cm)' },
+  { src: tiezazat, title: 'Inspirationsposter - 10 Tiezazat', size: '10 Tiezazat (10 x 15 cm)' },
+  { src: tiezazatBig, title: 'Inspirationsposter - 10 Tiezazat Big', size: '10 Tiezazat Big (15 x 20 cm)' },
+  { src: nabBet, title: 'Inspirationsposter - Nab Bet Egziabiher', size: 'Nab Bet Egziabiher (15 x 10 cm)' },
+  { src: xruyLbi, title: 'Inspirationsposter - Xruy Lbi Ftereley', size: 'Xruy Lbi Ftereley (20 x 15 cm)' },
+  { src: gerkaley, title: 'Inspirationsposter - Gerkaley Ika Emo', size: 'Gerkaley Ika Emo (10 x 15 cm)' },
+  { src: gahiLbey, title: 'Inspirationsposter - Gahi Lbey', size: 'Gahi Lbey (15 x 10 cm)' },
+  { src: selamNeza, title: 'Inspirationsposter - Selam Neza Bet', size: 'Selam Neza Bet (15 x 10 cm)' }
 ];
 
 // Function to get CSS class based on size
 const getSizeClass = (size) => {
-  if (size === 'A2 (42 x 59 cm)') return 'inspiration-poster-a2';
-  if (size === 'A1 (59 x 84 cm)') return 'inspiration-poster-a1';
-  if (size === 'A3 (30 x 42 cm)') return 'inspiration-poster-a3';
-  if (size === 'A4 (21 x 30 cm)') return 'inspiration-poster-a4';
-  return 'inspiration-poster-a3'; // default
+  if (size === 'O Amlakey (10 x 15 cm)') return 'inspiration-poster-amlakey';
+  if (size === 'Eti Zmkah (15 x 10 cm)') return 'inspiration-poster-eti-zmkah';
+  if (size === '10 Tiezazat (10 x 15 cm)') return 'inspiration-poster-tiezazat';
+  if (size === '10 Tiezazat Big (15 x 20 cm)') return 'inspiration-poster-tiezazat-big';
+  if (size === 'Nab Bet Egziabiher (15 x 10 cm)') return 'inspiration-poster-nab-bet';
+  if (size === 'Xruy Lbi Ftereley (20 x 15 cm)') return 'inspiration-poster-xruy-lbi';
+  if (size === 'Gerkaley Ika Emo (10 x 15 cm)') return 'inspiration-poster-gerkaley';
+  if (size === 'Gahi Lbey (15 x 10 cm)') return 'inspiration-poster-gahi-lbey';
+  if (size === 'Selam Neza Bet (15 x 10 cm)') return 'inspiration-poster-selam-neza';
+  return 'inspiration-poster-tiezazat'; // default
 };
 
 export default function InspirationPosters() {

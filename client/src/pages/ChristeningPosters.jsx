@@ -4,7 +4,7 @@ import Header from '../components/Header.jsx';
 import FastImage from '../components/FastImage.jsx';
 import { useSwipeGesture } from '../hooks/useSwipeGesture.js';
 import '../styles/christening.css';
-import rose from '../assets/dop/dop girl.webp';
+import dopGirl from '../assets/dop/dop girl.webp';
 import dopBoy from '../assets/dop/dop boy.webp';
 
 const translations = {
@@ -23,7 +23,7 @@ const translations = {
 };
 
 const featuredImages = [
-  { src: rose, title: 'Dopsposter - Rosa', size: '100 x 60 cm' },
+  { src: dopGirl, title: 'Dopsposter - Flicka', size: '100 x 60 cm' },
   { src: dopBoy, title: 'Dopsposter - Pojke', size: '100 x 60 cm' }
 ];
 

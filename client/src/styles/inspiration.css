@@ -35,10 +35,15 @@
 }
 
 /* Specific poster sizes for inspiration - responsive dimensions */
-.inspiration-poster-a1 { width: 45%; aspect-ratio: 59/84; height: auto; margin: 0 auto; display: block; }
-.inspiration-poster-a2 { width: 40%; aspect-ratio: 42/59; height: auto; margin: 0 auto; display: block; }
-.inspiration-poster-a3 { width: 35%; aspect-ratio: 30/42; height: auto; margin: 0 auto; display: block; }
-.inspiration-poster-a4 { width: 30%; aspect-ratio: 21/30; height: auto; margin: 0 auto; display: block; }
+.inspiration-poster-amlakey { width: 40%; aspect-ratio: 10/15; height: auto; margin: 0 auto; display: block; }
+.inspiration-poster-eti-zmkah { width: 45%; aspect-ratio: 15/10; height: auto; margin: 0 auto; display: block; }
+.inspiration-poster-tiezazat { width: 30%; aspect-ratio: 10/15; height: auto; margin: 0 auto; display: block; }
+.inspiration-poster-tiezazat-big { width: 45%; aspect-ratio: 15/20; height: auto; margin: 0 auto; display: block; }
+.inspiration-poster-nab-bet { width: 40%; aspect-ratio: 15/10; height: auto; margin: 0 auto; display: block; }
+.inspiration-poster-xruy-lbi { width: 35%; aspect-ratio: 20/15; height: auto; margin: 0 auto; display: block; }
+.inspiration-poster-gerkaley { width: 40%; aspect-ratio: 10/15; height: auto; margin: 0 auto; display: block; }
+.inspiration-poster-gahi-lbey { width: 45%; aspect-ratio: 15/10; height: auto; margin: 0 auto; display: block; }
+.inspiration-poster-selam-neza { width: 45%; aspect-ratio: 15/10; height: auto; margin: 0 auto; display: block; }
 
 /* Responsive */
 @media (max-width: 1024px) {
@@ -59,7 +64,8 @@
 
 @media (max-width: 480px) {
   .inspiration-image-card {
-    max-width: 120px;
+    width: 100%;
+    max-width: 100%;
     margin-left: auto;
     margin-right: auto;
     padding: 0;
@@ -73,6 +79,7 @@
   }
   .inspiration-images-grid {
     gap: 8px;
+    width: 100%;
   }
 }
 

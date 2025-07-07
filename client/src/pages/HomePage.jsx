@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header.jsx';
-import florence from '../assets/inspiration/O Amlakey.webp';
+import oAmlakey from '../assets/inspiration/gahi lbey.webp';
 import gozo from '../assets/exam/gozo.webp';
-import rose from '../assets/dop/dop girl.webp';
-import whitePoster from '../assets/wedding/white poster.webp';
-import girlBirthday from '../assets/birthday/girl birthday.webp';
+import dopGirl from '../assets/dop/dop girl.webp';
+import colorPoster from '../assets/wedding/color poster.webp';
+import boyBirthday from '../assets/birthday/boy birthday.webp';
 import girlStudenten from '../assets/graduation/girl studenten.webp';
 
 const translations = {
   sv: {
-    contactInfo: 'Vill du ha en personlig poster? Kontakta mig via telefon: 070-123 45 67',
+    contactInfo: 'Vill du ha en personlig poster? Kontakta mig via telefon: 070-039 56 06',
     wedding: 'Bröllop',
     christening: 'Dop',
     birthday: 'Födelsedag',
@@ -19,7 +19,7 @@ const translations = {
     inspiration: 'Inspiration',
   },
   en: {
-    contactInfo: 'Want a personal poster? Contact me by phone: 070-123 45 67',
+    contactInfo: 'Want a personal poster? Contact me by phone: 070-039 56 06',
     wedding: 'Wedding',
     christening: 'Baptism',
     birthday: 'Birthday',
@@ -28,7 +28,7 @@ const translations = {
     inspiration: 'Inspiration',
   },
   ti: {
-    contactInfo: 'ሰብኣዊ ፖስተር ይደልዩ? ሓበሬታ ምልኣኽ: 070-123 45 67',
+    contactInfo: 'ሰብኣዊ ፖስተር ይደልዩ? ሓበሬታ ምልኣኽ: 070-039 56 06',
     wedding: 'መርዓ',
     christening: 'ጥምቀት',
     birthday: 'ልደት',
@@ -42,21 +42,21 @@ const categories = [
   {
     id: 'wedding',
     title: 'wedding',
-    image: whitePoster,
+    image: colorPoster,
     icon: '💍',
     sizes: ['Vit Rollup (85 x 200 cm)', 'Färgad Rollup (85 x 200 cm)']
   },
   {
     id: 'christening',
     title: 'christening',
-    image: rose,
+    image: dopGirl,
     icon: '👶',
     sizes: ['60 x 200 cm', '50 x 150 cm']
   },
   {
     id: 'birthday',
     title: 'birthday',
-    image: girlBirthday,
+    image: boyBirthday,
     icon: '🎂',
     sizes: ['100 x 60 cm', 'A3 (30 x 42 cm)']
   },
@@ -77,7 +77,7 @@ const categories = [
   {
     id: 'inspiration',
     title: 'inspiration',
-    image: florence,
+    image: oAmlakey,
     icon: '✨',
     sizes: ['85 x 200 cm', '60 x 200 cm']
   }

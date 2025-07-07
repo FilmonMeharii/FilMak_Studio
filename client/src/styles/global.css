@@ -177,7 +177,7 @@ body {
   min-height: 100vh;
   width: 100%;
   position: relative;
-  padding-bottom: 120px;
+  padding-bottom: 80px;
 }
 
 .section {
@@ -455,14 +455,15 @@ button:focus, .nav-link:focus, .image-card:focus, .category-card:focus, .modal-c
   background: var(--footer-bg);
   color: var(--footer-text);
   text-align: center;
-  padding: 32px 0 16px 0;
-  font-size: 1em;
+  padding: 20px 0 12px 0;
+  font-size: 0.9em;
   letter-spacing: 0.5px;
-  margin-top: 80px;
-  position: absolute;
+  position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
+  width: 100%;
+  z-index: 10;
 }
 
 .footer a {
@@ -532,7 +533,7 @@ button:focus, .nav-link:focus, .image-card:focus, .category-card:focus, .modal-c
   
   .header, .section { padding: 0 10px; }
   .section-with-margin { padding: 0; }
-  .footer { font-size: 0.95em; padding: 24px 0 10px 0; }
+  .footer { font-size: 0.85em; padding: 16px 0 8px 0; }
   
   /* Modal improvements for mobile */
   .modal-content {
@@ -648,7 +649,7 @@ button:focus, .nav-link:focus, .image-card:focus, .category-card:focus, .modal-c
     box-shadow: none;
   }
   
-  .footer { font-size: 0.9em; padding: 18px 0 6px 0; }
+  .footer { font-size: 0.8em; padding: 12px 0 6px 0; }
   
   /* Modal improvements for small mobile */
   .modal-content {
