@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header.jsx';
-import oAmlakey from '../assets/inspiration/gahi lbey.webp';
+import florence from '../assets/inspiration/O Amlakey.webp';
 import gozo from '../assets/exam/gozo.webp';
-import dopGirl from '../assets/dop/dop girl.webp';
-import colorPoster from '../assets/wedding/color poster.webp';
-import boyBirthday from '../assets/birthday/boy birthday.webp';
+import rose from '../assets/dop/dop girl.webp';
+import whitePoster from '../assets/wedding/white poster.webp';
+import girlBirthday from '../assets/birthday/girl birthday.webp';
 import girlStudenten from '../assets/graduation/girl studenten.webp';
 
 const translations = {
@@ -42,21 +42,21 @@ const categories = [
   {
     id: 'wedding',
     title: 'wedding',
-    image: colorPoster,
+    image: whitePoster,
     icon: '💍',
     sizes: ['Vit Rollup (85 x 200 cm)', 'Färgad Rollup (85 x 200 cm)']
   },
   {
     id: 'christening',
     title: 'christening',
-    image: dopGirl,
+    image: rose,
     icon: '👶',
     sizes: ['60 x 200 cm', '50 x 150 cm']
   },
   {
     id: 'birthday',
     title: 'birthday',
-    image: boyBirthday,
+    image: girlBirthday,
     icon: '🎂',
     sizes: ['100 x 60 cm', 'A3 (30 x 42 cm)']
   },
@@ -77,7 +77,7 @@ const categories = [
   {
     id: 'inspiration',
     title: 'inspiration',
-    image: oAmlakey,
+    image: florence,
     icon: '✨',
     sizes: ['85 x 200 cm', '60 x 200 cm']
   }

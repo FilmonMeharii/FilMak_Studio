@@ -4,8 +4,10 @@ import Header from '../components/Header.jsx';
 import FastImage from '../components/FastImage.jsx';
 import { useSwipeGesture } from '../hooks/useSwipeGesture.js';
 import '../styles/christening.css';
-import dopGirl from '../assets/dop/dop girl.webp';
+import rose from '../assets/dop/dop girl.webp';
 import dopBoy from '../assets/dop/dop boy.webp';
+import dopGirl2 from '../assets/dop/dop girl 2.webp';
+import dopBoy2 from '../assets/dop/dop boy 2.webp';
 
 const translations = {
   sv: {
@@ -23,8 +25,13 @@ const translations = {
 };
 
 const featuredImages = [
-  { src: dopGirl, title: 'Dopsposter - Flicka', size: '100 x 60 cm' },
+  { src: rose, title: 'Dopsposter - Rosa', size: '100 x 60 cm' },
   { src: dopBoy, title: 'Dopsposter - Pojke', size: '100 x 60 cm' }
+];
+
+const extraImages = [
+  { src: dopGirl2, title: 'Dopsposter - Rosa 2', size: '100 x 60 cm' },
+  { src: dopBoy2, title: 'Dopsposter - Pojke 2', size: '100 x 60 cm' }
 ];
 
 // Function to get CSS class based on size
@@ -102,38 +109,72 @@ export default function ChristeningPosters() {
       </div>
 
       {/* Featured christening images at the top of the grid, both clickable */}
-      <div className="dop-featured-image-container" style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center', gap: '24px', margin: '8px 0 8px 0', width: '100%', padding: '0 24px' }}>
-        {featuredImages.map((img, idx) => (
-          <div
-            key={img.title}
-            className="christening-image-card"
-            onClick={() => setImgModal(-1 - idx)}
-            title="Klicka för att förstora"
-            tabIndex={0}
-            aria-label={`Enlarge featured christening poster ${idx+1}`}
-            style={{ cursor: 'pointer', maxWidth: '45%', width: 'auto', background: 'none', boxShadow: 'none', border: 'none' }}
-          >
-            <FastImage 
-              src={img.src} 
-              alt={img.title}
-              loading={idx < 2 ? "eager" : "lazy"}
-              priority={idx < 2}
-              style={{
-                maxWidth: '100%',
-                maxHeight: '320px',
-                height: 'auto',
-                width: 'auto',
-                objectFit: 'contain',
-                borderRadius: '18px',
-                display: 'block',
-                margin: '0 auto',
-                background: 'none',
-                boxShadow: 'none',
-                padding: 0
-              }}
-            />
-          </div>
-        ))}
+      <div className="dop-featured-image-container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '16px', margin: '8px 0 8px 0', width: '100%', padding: '0 24px' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center', gap: '24px', width: '100%' }}>
+          {featuredImages.map((img, idx) => (
+            <div
+              key={img.title}
+              className="christening-image-card"
+              onClick={() => setImgModal(-1 - idx)}
+              title="Klicka för att förstora"
+              tabIndex={0}
+              aria-label={`Enlarge featured christening poster ${idx+1}`}
+              style={{ cursor: 'pointer', maxWidth: '45%', width: 'auto', background: 'none', boxShadow: 'none', border: 'none' }}
+            >
+              <FastImage 
+                src={img.src} 
+                alt={img.title}
+                loading={idx < 2 ? "eager" : "lazy"}
+                priority={idx < 2}
+                style={{
+                  maxWidth: '100%',
+                  maxHeight: '320px',
+                  height: 'auto',
+                  width: 'auto',
+                  objectFit: 'contain',
+                  borderRadius: '18px',
+                  display: 'block',
+                  margin: '0 auto',
+                  background: 'none',
+                  boxShadow: 'none',
+                  padding: 0
+                }}
+              />
+            </div>
+          ))}
+        </div>
+        <div style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center', gap: '24px', width: '100%' }}>
+          {extraImages.map((img, idx) => (
+            <div
+              key={img.title}
+              className="christening-image-card"
+              onClick={() => setImgModal(-3 - idx)}
+              title="Klicka för att förstora"
+              tabIndex={0}
+              aria-label={`Enlarge extra christening poster ${idx+1}`}
+              style={{ cursor: 'pointer', maxWidth: '45%', width: 'auto', background: 'none', boxShadow: 'none', border: 'none' }}
+            >
+              <FastImage 
+                src={img.src} 
+                alt={img.title}
+                loading="lazy"
+                style={{
+                  maxWidth: '100%',
+                  maxHeight: '320px',
+                  height: 'auto',
+                  width: 'auto',
+                  objectFit: 'contain',
+                  borderRadius: '18px',
+                  display: 'block',
+                  margin: '0 auto',
+                  background: 'none',
+                  boxShadow: 'none',
+                  padding: 0
+                }}
+              />
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* Image Modal */}
@@ -158,7 +199,7 @@ export default function ChristeningPosters() {
             }}
           >
             <img
-              src={imgModal < 0 ? featuredImages[Math.abs(imgModal) - 1].src : examples[imgModal].src}
+              src={imgModal < 0 ? (imgModal >= -2 ? featuredImages[Math.abs(imgModal) - 1].src : extraImages[Math.abs(imgModal) - 3].src) : examples[imgModal].src}
               alt={imgModal < 0 ? `Enlarged ${featuredImages[Math.abs(imgModal) - 1].title}` : `Enlarged example christening poster ${imgModal + 1}`}
               className="modal-image"
               loading="lazy"

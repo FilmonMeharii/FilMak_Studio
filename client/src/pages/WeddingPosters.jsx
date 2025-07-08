@@ -6,6 +6,7 @@ import { useSwipeGesture } from '../hooks/useSwipeGesture.js';
 import '../styles/wedding.css';
 import colorPoster from '../assets/wedding/color poster.webp';
 import blackColored from '../assets/wedding/black colored.webp';
+import whitePoster from '../assets/wedding/white poster.webp';
 
 const translations = {
   sv: {
@@ -23,6 +24,7 @@ const translations = {
 };
 
 const examples = [
+  { src: whitePoster, title: 'Bröllopsposter - Vit', size: '100 x 60 cm' },
   { src: colorPoster, title: 'Bröllopsposter - Färgad', size: '100 x 60 cm' },
   { src: blackColored, title: 'Bröllopsposter - Svart färgad', size: '100 x 60 cm' }
 ];
